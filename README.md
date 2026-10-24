@@ -28,4 +28,4 @@ Other static hosts (Netlify, Cloudflare Pages, Vercel) also work: point them at 
 
 - Colours: North Violet `#5B21E6`, Pixel Pink `#FF3D8B`, Midnight Ink `#1A1033`, Lilac Mist `#F1EBFF`, White `#FFFFFF`
 - Typefaces: Outfit (headings), DM Sans (body)
-- The colours are CSS variables at the top of the `<style>` block, with a dark mode that follows the visitor's device setting.
+- The colours are CSS variables at the top of the `<style>` block, and the page always uses its light colour scheme, whatever the visitor's device setting.
