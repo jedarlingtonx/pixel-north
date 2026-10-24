@@ -6,8 +6,11 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 
 ## Files
 
-- `index.html`: the whole site
+- `index.html`: the main page
+- `privacy.html`: the privacy notice
+- `sitemap.xml`: lists the pages for search engines
 - `images/james.jpg`: the portrait in the hero section
+- `images/og-image.png`: the preview image shown when the site is shared (1200 × 630)
 
 ## Before you publish
 
