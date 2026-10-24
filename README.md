@@ -7,6 +7,7 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 ## Files
 
 - `index.html`: the whole site
+- `images/james.jpg`: the portrait in the hero section
 
 ## Before you publish
 
