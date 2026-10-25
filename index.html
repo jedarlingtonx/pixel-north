@@ -87,6 +87,7 @@ label{font-weight:500;font-size:15px;display:flex;flex-direction:column;gap:6px}
 input,select,textarea{font:inherit;font-size:16px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);width:100%}
 .two{display:flex;flex-wrap:wrap;gap:18px}.two>*{flex:1 1 180px}
 #note{font-size:15px;color:var(--muted)}
+#note:empty{display:none}
 footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;color:var(--muted);font-size:15px}
 .contact{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
 .contact>*{flex:1 1 360px}
@@ -185,6 +186,7 @@ nav .wm{font-size:24px}
 <p class="intro" style="margin-bottom:0">Pop your details in and I’ll get back to you with a few questions and a plan.</p>
 </div>
 <form id="f">
+<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
 <div class="two">
 <label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="fn" required autocomplete="given-name"></label>
 <label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="ln" required autocomplete="family-name"></label>
@@ -197,8 +199,8 @@ nav .wm{font-size:24px}
 <label><span>Tell me a bit more <span class="req" aria-hidden="true">*</span></span><textarea id="m" rows="4" required></textarea></label>
 <p style="margin:0;font-size:14px;color:var(--muted)">* All fields are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Send it over →</button>
-<p id="note" role="status">This opens a pre-filled email to me, so you can check it before sending.</p>
-<p style="font-size:14px;color:var(--muted)">I only use your details to reply to your enquiry. See the <a href="privacy.html">privacy notice</a>.</p>
+<p id="note" role="status"></p>
+<p style="font-size:14px;color:var(--muted)">Your details are sent to me by email through a form service, and I only use them to reply to your enquiry. See the <a href="privacy.html">privacy notice</a>.</p>
 </form>
 </section>
 
@@ -222,21 +224,60 @@ document.querySelectorAll("[data-go]").forEach(function(a){
     if (t) t.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
   });
 });
+// Contact form: sent through Formspree, which emails each enquiry to me.
+// Create a form at formspree.io, then paste its ID between the quotes on the next line
+// (the ID is the end of the form's endpoint URL, for example https://formspree.io/f/xyzabcde).
+// Until that is done the form falls back to opening a pre-filled email.
+var FORM_ID = "";
+var FORM_ENDPOINT = "https://formspree.io/f/" + FORM_ID;
 document.getElementById("f").addEventListener("submit", function(ev){
   ev.preventDefault();
-  var v = function(i){ return document.getElementById(i).value.trim(); };
-  var name = v("fn") + " " + v("ln");
-  var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nNeed: " + v("w") + "\n\n" + v("m");
-  var href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
+  var form = ev.target;
+  var v = function(id){ return document.getElementById(id).value.trim(); };
+  if (v("gotcha")) return; // a bot filled the hidden field
+  var first = v("fn");
+  var name = first + " " + v("ln");
   var note = document.getElementById("note");
-  note.innerHTML = "";
-  var l = document.createElement("a");
-  l.href = href;
-  l.textContent = "Open the pre-filled email";
-  note.appendChild(document.createTextNode("Your email app should open. If it doesn’t, "));
-  note.appendChild(l);
-  note.appendChild(document.createTextNode("."));
-  window.location.href = href;
+  var btn = form.querySelector('button[type="submit"]');
+  var say = function(text, href, linkText){
+    note.textContent = text;
+    if (href) {
+      var a = document.createElement("a");
+      a.href = href;
+      a.textContent = linkText;
+      note.appendChild(a);
+      note.appendChild(document.createTextNode("."));
+    }
+  };
+  if (!FORM_ID) {
+    var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nNeed: " + v("w") + "\n\n" + v("m");
+    var href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
+    say("Your email app should open. If it doesn’t, ", href, "open the pre-filled email");
+    window.location.href = href;
+    return;
+  }
+  var label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+  say("");
+  fetch(FORM_ENDPOINT, {
+    method: "POST",
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+    body: JSON.stringify({
+      name: name, first_name: first, last_name: v("ln"), email: v("e"),
+      business: v("b"), need: v("w"), message: v("m"),
+      _subject: "Website enquiry from " + name
+    })
+  }).then(function(r){
+    if (!r.ok) throw new Error("status " + r.status);
+    form.reset();
+    say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.");
+  }).catch(function(){
+    say("Sorry, that didn’t send. Please try again, or email me at ", "mailto:" + EMAIL, EMAIL);
+  }).then(function(){
+    btn.disabled = false;
+    btn.textContent = label;
+  });
 });
 (function(){
   var els = [];
