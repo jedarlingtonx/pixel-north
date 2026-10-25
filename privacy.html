@@ -72,8 +72,14 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 .prose ul{padding-left:22px}
 .prose li{margin-bottom:8px}
 .meta{color:var(--muted);font-size:15px}
-.legal{flex:1 1 100%;display:flex;flex-direction:column;gap:6px;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal-text{display:flex;flex-direction:column;gap:6px;flex:1 1 320px}
 .legal p{margin:0}
+.fb{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--panel);color:var(--primary)}
+.fb:hover{background:var(--primary);color:#fff}
+.fb svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.credit{display:inline-flex;align-items:center;gap:8px}
+.factory{width:22px;height:22px;fill:none;stroke:var(--primary);stroke-width:26;stroke-linecap:butt;stroke-linejoin:miter;flex:none}
 </style>
 </head>
 <body>
@@ -125,11 +131,14 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 
 <footer>
 <span class="wm" style="font-size:20px">Pixel North</span>
-<span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span>
+<span class="credit"><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg></span>
 <span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
 <div class="legal">
-<p>J E Darlington Holdings Limited trading as Pixel North is registered in England and Wales (Company Number 16490976).</p>
+<div class="legal-text">
+<p>J E Darlington Holdings Limited trading as Pixel North is a limited company registered in England and Wales. Company Number 16490976.</p>
 <p>© Copyright 2026 J E Darlington Holdings Limited. All Rights Reserved.</p>
+</div>
+<a class="fb" href="https://www.facebook.com/profile.php?id=61595794411993&amp;locale=en_GB" target="_blank" rel="noopener noreferrer" aria-label="Pixel North on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
 </div>
 </footer>
 

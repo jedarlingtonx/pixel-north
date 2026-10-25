@@ -6,13 +6,13 @@
 <meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pixel North: Small business sites, sorted</title>
-<meta name="description" content="Pixel North is a freelance web designer in Cheshire. I build websites for small businesses to grow customer reach, visibility and trust.">
+<meta name="description" content="Pixel North designs and builds websites for small businesses. One designer, a clear written quotation, and a site that’s live in as little as a week.">
 <link rel="canonical" href="https://pixel-north.co.uk/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Pixel North">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="Pixel North: Small business sites, sorted">
-<meta property="og:description" content="Pixel North is a freelance web designer in Cheshire. I build websites for small businesses to grow customer reach, visibility and trust.">
+<meta property="og:description" content="Pixel North designs and builds websites for small businesses. One designer, a clear written quotation, and a site that’s live in as little as a week.">
 <meta property="og:url" content="https://pixel-north.co.uk/">
 <meta property="og:image" content="https://pixel-north.co.uk/images/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,7 +35,7 @@
 }
 </script>
 <script>document.documentElement.className+=" js"</script>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;--bg:#fff;--text:#1A1033;--muted:#5E5675;--primary:#5B21E6;--accent:#FF3D8B;--panel:#F1EBFF;--line:#7C5CE8;--card:#4A17BF;--ink:#1A1033;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -96,8 +96,9 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 .hero-text{display:contents}
 .hero h1{order:1}
 .portrait{order:2;align-self:center;flex:0 0 auto;width:136px;max-width:136px;border-width:4px;box-shadow:0 0 0 7px var(--panel);transition-delay:.1s!important}
-.hero p{order:3;margin:0}
-.hero .btn{order:4}
+.hero .hello{order:3;margin:0 0 -12px}
+.hero p,.hero .hello+p{order:4;margin:0}
+.hero .btn{order:5}
 }
 .js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
 .js .rv.in{opacity:1;transform:none}
@@ -111,15 +112,53 @@ nav .wm{font-size:24px}
 .req{color:var(--primary);margin-left:2px}
 .alt{background:var(--panel)}
 .alt .card{background:var(--bg)}
-.legal{flex:1 1 100%;display:flex;flex-direction:column;gap:6px;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal-text{display:flex;flex-direction:column;gap:6px;flex:1 1 320px}
 .legal p{margin:0}
+.fb{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--panel);color:var(--primary)}
+.fb:hover{background:var(--primary);color:#fff}
+.fb svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hello{font-weight:500;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.5px;color:var(--primary);margin:20px 0 0}
+.hello+p{margin-top:8px}
+.hero p strong{font-weight:700;color:#1A1033}
+.close .sorted{font-weight:700;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:5px}
+.card{position:relative}
+.tick{position:absolute;top:16px;right:16px;width:26px;height:26px}
+.ico{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--panel);color:var(--primary);margin-bottom:14px}
+.ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.flush{padding-left:0;padding-right:0}
+.wrap{padding-left:max(24px,calc((100% - 1120px)/2));padding-right:max(24px,calc((100% - 1120px)/2))}
+.chev{--edge:max(24px,calc((100vw - 1120px)/2));--pt:48px;display:flex;margin-top:32px}
+.stage{flex:1 1 0;color:#fff;padding:44px 64px 48px}
+.stage h3{font-weight:500;margin-bottom:8px}
+.stage p{color:#E9E0FF}
+.s1{background:#1A1033;padding-left:var(--edge);clip-path:polygon(0 0,calc(100% - var(--pt)) 0,100% 50%,calc(100% - var(--pt)) 100%,0 100%)}
+.s2{background:#5B21E6;margin-left:calc(var(--pt) * -1);padding-left:80px;clip-path:polygon(0 0,calc(100% - var(--pt)) 0,100% 50%,calc(100% - var(--pt)) 100%,0 100%,var(--pt) 50%)}
+.s3{background:#1A1033;margin-left:calc(var(--pt) * -1);padding-left:80px;padding-right:var(--edge);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,var(--pt) 50%)}
+.qclose{font:500 22px/1.3 Outfit,system-ui,sans-serif;text-align:center;margin-top:40px}
+@media (max-width:960px){
+.chev{flex-direction:column;--pt:30px}
+.stage{padding:40px var(--edge)}
+.s1{padding-bottom:calc(var(--pt) + 28px);clip-path:polygon(0 0,100% 0,100% calc(100% - var(--pt)),50% 100%,0 calc(100% - var(--pt)))}
+.s2{margin-left:0;margin-top:calc(var(--pt) * -1);padding-top:calc(var(--pt) + 28px);padding-bottom:calc(var(--pt) + 28px);clip-path:polygon(0 0,50% var(--pt),100% 0,100% calc(100% - var(--pt)),50% 100%,0 calc(100% - var(--pt)))}
+.s3{margin-left:0;margin-top:calc(var(--pt) * -1);padding-top:calc(var(--pt) + 28px);padding-bottom:44px;clip-path:polygon(0 0,50% var(--pt),100% 0,100% 100%,0 100%)}
+}
+.season-strip{display:none}
+[data-season="halloween"] .season-strip{display:flex;justify-content:center;align-items:center;gap:10px;background:#1A1033;color:#E9E0FF;font-size:14px;line-height:1.4;padding:8px 24px;text-align:center}
+.season-strip a{color:#FF9A4D}
+.pumpkin{display:inline-block;width:20px;height:20px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 7 7%22 shape-rendering=%22crispEdges%22%3E%3Crect x=%223%22 y=%220%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%221%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%223%22 y=%221%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%224%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%222%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%222%22 y=%223%22 width=%223%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%225%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%226%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%224%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%222%22 y=%225%22 width=%223%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%225%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%226%22 width=%225%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3C/svg%3E") center/contain no-repeat}
+[data-season="halloween"] .hero h1 i{width:.42em;height:.42em;margin-left:.1em;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 7 7%22 shape-rendering=%22crispEdges%22%3E%3Crect x=%223%22 y=%220%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%221%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%223%22 y=%221%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%224%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%222%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%222%22 y=%223%22 width=%223%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%225%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%226%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%224%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%222%22 y=%225%22 width=%223%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%225%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%226%22 width=%225%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3C/svg%3E") center/contain no-repeat}
+.credit{display:inline-flex;align-items:center;gap:8px}
+.factory{width:22px;height:22px;fill:none;stroke:var(--primary);stroke-width:26;stroke-linecap:butt;stroke-linejoin:miter;flex:none}
 </style>
 </head>
-<body>
+<body data-season="halloween">
+<!-- Seasonal theme: delete data-season="halloween" from the <body> tag above to switch the Halloween touches off. -->
+<div class="season-strip" role="note"><span class="pumpkin" aria-hidden="true"></span><span>Happy Halloween! A little seasonal touch from Pixel North. Want your site to mark the season too? <a href="#" data-go="quotes">Get a quote</a></span></div>
 
 <nav>
 <a class="wm" href="#" data-go="top">Pixel North</a>
-<a class="btn nav-btn" href="#" data-go="contact">Get in touch</a>
+<a class="btn nav-btn" href="#" data-go="quotes">Get a quote</a>
 <div class="nav-links">
 <a href="#" data-go="why">Why</a><span aria-hidden="true">|</span>
 <a href="#" data-go="faff">How</a><span aria-hidden="true">|</span>
@@ -130,60 +169,63 @@ nav .wm{font-size:24px}
 <header class="sec hero" id="top">
 <div class="hero-text">
 <h1>Small business sites, sorted<i></i></h1>
-<p>Hi! I’m James, a freelance web designer. I help small businesses build an online presence, creating greater customer <em>reach, visibility and trust.</em></p>
+<h2 class="hello">Hello!</h2>
+<p>I’m James, a freelance web designer. I help small businesses build an online presence, creating greater customer <em><strong>reach</strong>, <strong>visibility</strong> and <strong>trust</strong>.</em></p>
 <a class="btn pink" href="#" data-go="contact">Tell me about your business →</a>
 </div>
 <img class="portrait" src="images/james.jpg" width="512" height="512" alt="Portrait of James, the freelance web designer behind Pixel North, lit with red and pink light">
 </header>
 
 <section class="sec band" id="why">
-<h2>Why your small business needs a website</h2>
-<p class="lead">Your customers are already looking you up. Without a website, there’s nothing for them to find.</p>
+<h2>Why your business needs a modern website</h2>
+<p class="lead">Your customers are already looking for you. Without a modern, optimised website, you’re hard to find.</p>
 <div class="row">
 <div class="stat"><div class="sq"></div><div class="num">59%</div><p>of UK internet users research products and brands online before they buy.</p><small>Source: DataReportal, Digital 2025: United Kingdom</small></div>
 <div class="stat"><div class="sq"></div><div class="num">4.5</div><p>hours a day: UK adults spend an average of four and a half hours online every day.</p><small>Source: Ofcom, Online Nation 2025</small></div>
 <div class="stat"><div class="sq"></div><div class="num">82%</div><p>of UK adults use Google Search, which handles around 3 billion searches a month in the UK.</p><small>Source: Ofcom, Online Nation 2025</small></div>
 <div class="stat"><div class="sq"></div><div class="num">79%</div><p>of Brits agree that a business with a well-designed website is more credible than one with only a social media page.</p><small>Source: Squarespace and YouGov survey, 2022</small></div>
 </div>
-<p class="close">A website that’s sorted means you’re easy to find, easy to trust, and easy to contact.</p>
+<p class="close">A website that’s <strong class="sorted">sorted</strong> means you’re easy to find, easy to trust, and easy to contact.</p>
 </section>
 
 <section class="sec" id="faff">
 <h2>A website, minus the faff</h2>
-<div class="row" style="margin-top:32px">
-<div class="card"><h3>Quick</h3><p>Live in as little as a week.</p></div>
-<div class="card"><h3>Personal</h3><p>One designer, no hand-offs. You deal with the person doing the work.</p></div>
-<div class="card"><h3>Clear</h3><p>Plain English, and a clear written quotation after an initial consultation, so you know what you’re getting.</p></div>
-<div class="card"><h3>Sorted</h3><p>Launch, handover, and support are covered.</p></div>
+<p class="intro">Leave the logistics and technical jargon to me.</p>
+<div class="row">
+<div class="card"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#5B21E6"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Quick</h3><p>Live in as little as a week.</p></div>
+<div class="card"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#5B21E6"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Personal</h3><p>One designer, no hand-offs. You deal with the person doing the work.</p></div>
+<div class="card"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#5B21E6"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Clear</h3><p>Plain English, and a clear written quotation after an initial consultation, so you know what you’re getting.</p></div>
+<div class="card"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#5B21E6"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Sorted</h3><p>Launch, handover, and support are covered.</p></div>
 </div>
 </section>
 
 <section class="sec alt" id="services">
 <h2>What I can do for your business</h2>
-<p class="intro">Every business is different, so there are no one-size-fits-all packages. We’ll have a chat, and I’ll send you a quotation that fits.</p>
+<p class="intro">We’ll have a chat, and I’ll tailor a package that fits your needs.</p>
 <div class="row">
-<div class="card" style="flex-basis:320px"><h3>Website design and build</h3><p>A custom, mobile-friendly site that looks sharp and says clearly what you do, from first sketch to launch.</p></div>
-<div class="card" style="flex-basis:320px"><h3>Website refresh</h3><p>A tired or confusing site, tidied up. I’ll freshen the design and simplify the structure so customers find what they need.</p></div>
-<div class="card" style="flex-basis:320px"><h3>Content and copy support</h3><p>Help shaping your pages, from structure to plain-English wording, so your site is clear and easy to read.</p></div>
-<div class="card" style="flex-basis:320px"><h3>Search and analytics setup</h3><p>The basics that help people find you: search foundations, your Google Business profile, and simple analytics.</p></div>
-<div class="card" style="flex-basis:320px"><h3>Enquiry forms and bookings</h3><p>Contact forms and enquiry or booking tools that send customers straight to you.</p></div>
-<div class="card" style="flex-basis:320px"><h3>Care and support</h3><p>Hosting, backups, updates, and small edits, so your site stays safe and up to date after launch.</p></div>
+<div class="card" style="flex-basis:320px"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/></svg></span><h3>Website design and build</h3><p>A custom, mobile-friendly site that looks sharp and says clearly what you do, from first sketch to launch.</p></div>
+<div class="card" style="flex-basis:320px"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></span><h3>Website refresh</h3><p>A tired or confusing site, tidied up. I’ll freshen the design and simplify the structure so customers find what they need.</p></div>
+<div class="card" style="flex-basis:320px"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20z"/><path d="M13.5 7.5l3 3"/></svg></span><h3>Content and copy support</h3><p>Help shaping your pages, from structure to plain-English wording, so your site is clear and easy to read.</p></div>
+<div class="card" style="flex-basis:320px"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span><h3>Search and analytics setup</h3><p>The basics that help people find you: search foundations, your Google Business profile, and simple analytics.</p></div>
+<div class="card" style="flex-basis:320px"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3.5v3M16 3.5v3"/><path d="M9 15l2 2 4-4"/></svg></span><h3>Enquiry forms and bookings</h3><p>Contact forms and enquiry or booking tools that send customers straight to you.</p></div>
+<div class="card" style="flex-basis:320px"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.5-3.1 8-7.5 9.5-4.4-1.5-7.5-5-7.5-9.5V6L12 3z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg></span><h3>Care and support</h3><p>Hosting, backups, updates, and small edits, so your site stays safe and up to date after launch.</p></div>
 </div>
 </section>
 
-<section class="sec dark" id="quotes">
-<h2>How quotes work</h2>
-<div class="row" style="margin-top:32px;gap:32px">
-<div><div class="step">1</div><h3>An initial consultation</h3><p>We talk about your business, your goals, and what you need from a website.</p></div>
-<div><div class="step">2</div><h3>A clear quotation</h3><p>I send you a written quotation covering what’s included, the timeline, and the cost.</p></div>
-<div><div class="step">3</div><h3>Start when you’re ready</h3><p>No pressure. If it looks right, we get going. If not, you’ve lost nothing.</p></div>
+<section class="sec flush" id="quotes">
+<div class="wrap"><h2>How quotes work</h2></div>
+<div class="chev">
+<div class="stage s1"><div class="step">1</div><h3>An initial consultation</h3><p>We talk about your business, your goals, and what you need from a website.</p></div>
+<div class="stage s2"><div class="step">2</div><h3>A clear quotation</h3><p>I send you a written quotation covering what’s included, the timeline, and the cost.</p></div>
+<div class="stage s3"><div class="step">3</div><h3>Start when you’re ready</h3><p>No pressure. If it looks right, we get going. If not, you’ve lost nothing.</p></div>
 </div>
+<p class="qclose wrap">Drop your details in to the Form below for a quotation.</p>
 </section>
 
 <section class="sec contact" id="contact">
 <div>
 <h2>Tell me about your business</h2>
-<p class="intro" style="margin-bottom:0">Pop your details in and I’ll get back to you with a few questions and a plan.</p>
+<p class="intro" style="margin-bottom:0">Pop your details in and I’ll get back to you with a few questions and a quotation. Or let’s meet in person…coffee is on me :)</p>
 </div>
 <form id="f">
 <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
@@ -193,11 +235,12 @@ nav .wm{font-size:24px}
 </div>
 <label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="e" type="email" required autocomplete="email"></label>
 <label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="b" required autocomplete="organization"></label>
+<label><span>Current website address (optional)</span><input id="site" inputmode="url" autocomplete="url"></label>
 <label><span>What do you need? <span class="req" aria-hidden="true">*</span></span>
 <select id="w" required><option value="" selected disabled>Please choose</option><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
 </label>
 <label><span>Tell me a bit more <span class="req" aria-hidden="true">*</span></span><textarea id="m" rows="4" required></textarea></label>
-<p style="margin:0;font-size:14px;color:var(--muted)">* All fields are required.</p>
+<p style="margin:0;font-size:14px;color:var(--muted)">Fields marked * are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Send it over →</button>
 <p id="note" role="status"></p>
 <p style="font-size:14px;color:var(--muted)">Your details are sent to me by email through a form service, and I only use them to reply to your enquiry. See the <a href="privacy.html">privacy notice</a>.</p>
@@ -206,11 +249,14 @@ nav .wm{font-size:24px}
 
 <footer>
 <span class="wm" style="font-size:20px">Pixel North</span>
-<span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span>
+<span class="credit"><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg></span>
 <span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
 <div class="legal">
-<p>J E Darlington Holdings Limited trading as Pixel North is registered in England and Wales (Company Number 16490976).</p>
+<div class="legal-text">
+<p>J E Darlington Holdings Limited trading as Pixel North is a limited company registered in England and Wales. Company Number 16490976.</p>
 <p>© Copyright 2026 J E Darlington Holdings Limited. All Rights Reserved.</p>
+</div>
+<a class="fb" href="https://www.facebook.com/profile.php?id=61595794411993&amp;locale=en_GB" target="_blank" rel="noopener noreferrer" aria-label="Pixel North on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
 </div>
 </footer>
 
@@ -250,7 +296,7 @@ document.getElementById("f").addEventListener("submit", function(ev){
     }
   };
   if (!FORM_ID) {
-    var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nNeed: " + v("w") + "\n\n" + v("m");
+    var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nCurrent website: " + v("site") + "\nNeed: " + v("w") + "\n\n" + v("m");
     var href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
     say("Your email app should open. If it doesn’t, ", href, "open the pre-filled email");
     window.location.href = href;
@@ -265,7 +311,7 @@ document.getElementById("f").addEventListener("submit", function(ev){
     headers: {"Accept": "application/json", "Content-Type": "application/json"},
     body: JSON.stringify({
       name: name, first_name: first, last_name: v("ln"), email: v("e"),
-      business: v("b"), need: v("w"), message: v("m"),
+      business: v("b"), current_website: v("site"), need: v("w"), message: v("m"),
       _subject: "Website enquiry from " + name
     })
   }).then(function(r){
