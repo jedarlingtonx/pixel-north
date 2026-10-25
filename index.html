@@ -88,6 +88,11 @@ input,select,textarea{font:inherit;font-size:16px;padding:13px 15px;border:1px s
 .two{display:flex;flex-wrap:wrap;gap:18px}.two>*{flex:1 1 180px}
 #note{font-size:15px;color:var(--muted)}
 #note:empty{display:none}
+#note.ok,#note.err{padding:14px 16px;border-radius:12px;border:1px solid;font-size:16px;line-height:1.5}
+#note.ok{background:#E8F7EE;border-color:#2E9E5B;color:#14532D}
+#note.ok::before{content:"\2713";font-weight:700;margin-right:8px}
+#note.err{background:#FDECEF;border-color:#D64560;color:#7A1F31}
+#note.err a,#note.ok a{color:inherit}
 footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;color:var(--muted);font-size:15px}
 .contact{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
 .contact>*{flex:1 1 360px}
@@ -121,7 +126,7 @@ nav .wm{font-size:24px}
 .hello{font-weight:500;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.5px;color:var(--primary);margin:20px 0 0}
 .hello+p{margin-top:8px}
 .hero p strong{font-weight:700;color:#1A1033}
-.close .sorted{font-style:italic}
+.close .sorted{font-style:italic;font-weight:inherit;text-decoration:none}
 .card{position:relative}
 .tick{position:absolute;top:16px;right:16px;width:26px;height:26px}
 .ico{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--panel);color:var(--primary);margin-bottom:14px}
@@ -342,7 +347,8 @@ document.getElementById("f").addEventListener("submit", function(ev){
   var name = first + " " + v("ln");
   var note = document.getElementById("note");
   var btn = form.querySelector('button[type="submit"]');
-  var say = function(text, href, linkText){
+  var say = function(text, href, linkText, kind){
+    note.className = kind || "";
     note.textContent = text;
     if (href) {
       var a = document.createElement("a");
@@ -374,9 +380,9 @@ document.getElementById("f").addEventListener("submit", function(ev){
   }).then(function(r){
     if (!r.ok) throw new Error("status " + r.status);
     form.reset();
-    say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.");
+    say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.", null, null, "ok");
   }).catch(function(){
-    say("Sorry, that didn’t send. Please try again, or email me at ", "mailto:" + EMAIL, EMAIL);
+    say("Sorry, that didn’t send. Please try again, or email me at ", "mailto:" + EMAIL, EMAIL, "err");
   }).then(function(){
     btn.disabled = false;
     btn.textContent = label;
