@@ -100,15 +100,6 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-19MLYWMYX5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-19MLYWMYX5');
-</script>
 </head>
 <body>
 
@@ -199,7 +190,7 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 <footer>
 <span class="wm" style="font-size:20px">Pixel North</span>
 <span>Small business sites, sorted.</span>
-<a href="privacy.html">Privacy notice</a>
+<span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
 </footer>
 
 <script>
@@ -249,5 +240,6 @@ document.getElementById("f").addEventListener("submit", function(ev){
   els.forEach(function(el){ el.classList.add("rv"); io.observe(el); });
 })();
 </script>
+<script src="consent.js" defer></script>
 </body>
 </html>

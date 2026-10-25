@@ -8,6 +8,8 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 
 - `index.html`: the main page
 - `privacy.html`: the privacy notice
+- `cookies.html`: the cookie policy
+- `consent.js`: the cookie banner and settings; it loads Google Analytics only after consent. Set `GA_ID` at the top of this file to your GA4 measurement ID (starts with `G-`)
 - `sitemap.xml`: lists the pages for search engines
 - `images/james.jpg`: the portrait in the hero section
 - `images/og-image.png`: the preview image shown when the site is shared (1200 × 630)
