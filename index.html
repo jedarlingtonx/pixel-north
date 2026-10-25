@@ -35,7 +35,7 @@
 }
 </script>
 <script>document.documentElement.className+=" js"</script>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;--bg:#fff;--text:#1A1033;--muted:#5E5675;--primary:#5B21E6;--accent:#FF3D8B;--panel:#F1EBFF;--line:#7C5CE8;--card:#4A17BF;--ink:#1A1033;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -54,8 +54,10 @@ a{color:var(--primary)}
 .row>*{flex:1 1 240px}
 .wm{font-weight:700;font-size:28px;letter-spacing:-1px;color:var(--primary);display:inline-flex;align-items:flex-end;gap:4px;text-decoration:none}
 .wm::after{content:"";width:.26em;height:.26em;background:var(--accent);margin-bottom:.22em}
-nav{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:20px max(24px,calc((100% - 1120px)/2))}
-nav div{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center}
+nav{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:20px max(24px,calc((100% - 1120px)/2))}
+nav .wm{margin-right:auto}
+.nav-links{order:1;display:flex;align-items:center;gap:0 14px;color:var(--muted)}
+.nav-btn{order:2}
 nav a:not(.wm):not(.btn){color:var(--text);text-decoration:none}
 .btn{display:inline-block;border:0;border-radius:999px;font:500 18px "DM Sans",system-ui,sans-serif;padding:15px 28px;text-decoration:none;cursor:pointer;background:#5B21E6;color:#fff}
 .pink{background:var(--accent);color:#1A1033}
@@ -99,24 +101,34 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 .js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+@media (max-width:700px){
+nav{gap:12px}
+nav .wm{font-size:24px}
+.nav-btn{order:1;padding:10px 18px;font-size:16px}
+.nav-links{order:2;flex:1 1 100%}
+}
+.alt{background:var(--panel)}
+.alt .card{background:var(--bg)}
+.legal{flex:1 1 100%;display:flex;flex-direction:column;gap:6px;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal p{margin:0}
 </style>
 </head>
 <body>
 
 <nav>
 <a class="wm" href="#" data-go="top">Pixel North</a>
-<div>
-<a href="#" data-go="why">Why a website</a>
-<a href="#" data-go="services">Services</a>
-<a href="#" data-go="how">How quotes work</a>
-<a class="btn" href="#" data-go="contact">Get in touch</a>
+<a class="btn nav-btn" href="#" data-go="contact">Get in touch</a>
+<div class="nav-links">
+<a href="#" data-go="why">Why</a><span aria-hidden="true">|</span>
+<a href="#" data-go="faff">How</a><span aria-hidden="true">|</span>
+<a href="#" data-go="services">What</a>
 </div>
 </nav>
 
 <header class="sec hero" id="top">
 <div class="hero-text">
 <h1>Small business sites, sorted<i></i></h1>
-<p>Hi! I’m James, a freelance web designer. I help small businesses build an online presence, creating greater customer reach, visibility and trust.</p>
+<p>Hi! I’m James, a freelance web designer. I help small businesses build an online presence, creating greater customer <em>reach, visibility and trust.</em></p>
 <a class="btn pink" href="#" data-go="contact">Tell me about your business →</a>
 </div>
 <img class="portrait" src="images/james.jpg" width="512" height="512" alt="Portrait of James, the freelance web designer behind Pixel North, lit with red and pink light">
@@ -134,19 +146,19 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 <p class="close">A website that’s sorted means you’re easy to find, easy to trust, and easy to contact.</p>
 </section>
 
-<section class="sec">
+<section class="sec" id="faff">
 <h2>A website, minus the faff</h2>
 <div class="row" style="margin-top:32px">
-<div class="card"><h3>Quick</h3><p>Live in weeks, not months.</p></div>
+<div class="card"><h3>Quick</h3><p>Live in as little as a week.</p></div>
 <div class="card"><h3>Personal</h3><p>One designer, no hand-offs. You deal with the person doing the work.</p></div>
 <div class="card"><h3>Clear</h3><p>Plain English, and a clear written quotation after an initial consultation, so you know what you’re getting.</p></div>
 <div class="card"><h3>Sorted</h3><p>Launch, handover, and support are covered.</p></div>
 </div>
 </section>
 
-<section class="sec" id="services" style="padding-top:0">
+<section class="sec alt" id="services">
 <h2>What I can do for your business</h2>
-<p class="intro">Every business is different, so there are no one-size-fits-all packages. We’ll have a quick chat, and I’ll send you a quotation that fits.</p>
+<p class="intro">Every business is different, so there are no one-size-fits-all packages. We’ll have a chat, and I’ll send you a quotation that fits.</p>
 <div class="row">
 <div class="card" style="flex-basis:320px"><h3>Website design and build</h3><p>A custom, mobile-friendly site that looks sharp and says clearly what you do, from first sketch to launch.</p></div>
 <div class="card" style="flex-basis:320px"><h3>Website refresh</h3><p>A tired or confusing site, tidied up. I’ll freshen the design and simplify the structure so customers find what they need.</p></div>
@@ -157,7 +169,7 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 </div>
 </section>
 
-<section class="sec dark" id="how">
+<section class="sec dark" id="quotes">
 <h2>How quotes work</h2>
 <div class="row" style="margin-top:32px;gap:32px">
 <div><div class="step">1</div><h3>An initial consultation</h3><p>We talk about your business, your goals, and what you need from a website.</p></div>
@@ -173,14 +185,16 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 </div>
 <form id="f">
 <div class="two">
-<label>Your name<input id="n" required autocomplete="name"></label>
-<label>Email<input id="e" type="email" required autocomplete="email"></label>
+<label>First name<input id="fn" required autocomplete="given-name"></label>
+<label>Last name<input id="ln" required autocomplete="family-name"></label>
 </div>
-<label>Business name<input id="b" autocomplete="organization"></label>
+<label>Email<input id="e" type="email" required autocomplete="email"></label>
+<label>Business name<input id="b" required autocomplete="organization"></label>
 <label>What do you need?
-<select id="w"><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
+<select id="w" required><option value="" selected disabled>Please choose</option><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
 </label>
-<label>Tell me a bit more<textarea id="m" rows="4"></textarea></label>
+<label>Tell me a bit more<textarea id="m" rows="4" required></textarea></label>
+<p style="margin:0;font-size:14px;color:var(--muted)">All fields are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Send it over →</button>
 <p id="note" role="status">This opens a pre-filled email to me, so you can check it before sending.</p>
 <p style="font-size:14px;color:var(--muted)">I only use your details to reply to your enquiry. See the <a href="privacy.html">privacy notice</a>.</p>
@@ -191,6 +205,11 @@ footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wra
 <span class="wm" style="font-size:20px">Pixel North</span>
 <span>Small business sites, sorted.</span>
 <span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
+<div class="legal">
+<p>J E Darlington Holdings Limited trading as Pixel North is registered in England and Wales (Company Number 16490976).</p>
+<p>© Copyright 2026 J E Darlington Holdings Limited. All Rights Reserved.</p>
+<p>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</p>
+</div>
 </footer>
 
 <script>
@@ -206,8 +225,9 @@ document.querySelectorAll("[data-go]").forEach(function(a){
 document.getElementById("f").addEventListener("submit", function(ev){
   ev.preventDefault();
   var v = function(i){ return document.getElementById(i).value.trim(); };
-  var body = "Name: " + v("n") + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nNeed: " + v("w") + "\n\n" + v("m");
-  var href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + v("n")) + "&body=" + encodeURIComponent(body);
+  var name = v("fn") + " " + v("ln");
+  var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nNeed: " + v("w") + "\n\n" + v("m");
+  var href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
   var note = document.getElementById("note");
   note.innerHTML = "";
   var l = document.createElement("a");

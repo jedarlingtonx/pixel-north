@@ -82,7 +82,7 @@
     '<div class="pnc-box">' +
     '<div id="pn-view-main">' +
     '<h2 id="pn-title-main">Cookies on this site</h2>' +
-    '<p>I’d like to use Google Analytics cookies to see how people use this site. They stay off unless you say yes. A cookie that remembers your choice is always on. <a href="cookies.html">Cookie policy</a></p>' +
+    '<p>We’d like to use Analytics cookies to see how you use this site. They stay off unless you say yes. A cookie that remembers your choice is always on. <a href="cookies.html">Cookie policy</a></p>' +
     '<div class="pnc-row">' +
     '<button type="button" class="pnc-btn" data-act="accept">Accept analytics</button>' +
     '<button type="button" class="pnc-btn" data-act="reject">Reject analytics</button>' +

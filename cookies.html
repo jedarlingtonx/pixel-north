@@ -78,6 +78,8 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid #E4DAFF;vertical-align:top}
 .tbl th{font-weight:500;color:var(--muted)}
 .linkbtn{font:inherit;font-weight:500;background:#5B21E6;color:#fff;border:0;border-radius:999px;padding:12px 24px;cursor:pointer}
+.legal{flex:1 1 100%;display:flex;flex-direction:column;gap:6px;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal p{margin:0}
 </style>
 </head>
 <body>
@@ -111,7 +113,7 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 <p>Analytics tells me which pages are viewed, roughly where visitors come from, and what kind of device and browser they use. I use it only to understand and improve this site. The legal basis for analytics cookies is your consent.</p>
 
 <h2>Change your choice</h2>
-<p>You can change your mind at any time. Using the button below, or “Cookie settings” in the footer, will reopen the choices. If you turn analytics off, I delete the Google Analytics cookies from your browser.</p>
+<p>You can change your mind at any time. Using the button below, or “Cookie settings” in the footer, will reopen the choices. If you turn analytics off, the Google Analytics cookies will be deleted from your browser.</p>
 <p><button type="button" class="linkbtn" data-cookie-settings>Change cookie settings</button></p>
 <p>You can also block or delete cookies in your browser settings. Doing so may mean you’re asked for your choice again.</p>
 
@@ -126,6 +128,11 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 <span class="wm" style="font-size:20px">Pixel North</span>
 <span>Small business sites, sorted.</span>
 <span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
+<div class="legal">
+<p>J E Darlington Holdings Limited trading as Pixel North is registered in England and Wales (Company Number 16490976).</p>
+<p>© Copyright 2026 J E Darlington Holdings Limited. All Rights Reserved.</p>
+<p>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</p>
+</div>
 </footer>
 
 <script src="consent.js" defer></script>
