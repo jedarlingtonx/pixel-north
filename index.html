@@ -107,6 +107,7 @@ nav .wm{font-size:24px}
 .nav-btn{order:1;padding:10px 18px;font-size:16px}
 .nav-links{order:2;flex:1 1 100%}
 }
+.req{color:var(--primary);margin-left:2px}
 .alt{background:var(--panel)}
 .alt .card{background:var(--bg)}
 .legal{flex:1 1 100%;display:flex;flex-direction:column;gap:6px;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
@@ -185,16 +186,16 @@ nav .wm{font-size:24px}
 </div>
 <form id="f">
 <div class="two">
-<label>First name<input id="fn" required autocomplete="given-name"></label>
-<label>Last name<input id="ln" required autocomplete="family-name"></label>
+<label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="fn" required autocomplete="given-name"></label>
+<label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="ln" required autocomplete="family-name"></label>
 </div>
-<label>Email<input id="e" type="email" required autocomplete="email"></label>
-<label>Business name<input id="b" required autocomplete="organization"></label>
-<label>What do you need?
+<label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="e" type="email" required autocomplete="email"></label>
+<label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="b" required autocomplete="organization"></label>
+<label><span>What do you need? <span class="req" aria-hidden="true">*</span></span>
 <select id="w" required><option value="" selected disabled>Please choose</option><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
 </label>
-<label>Tell me a bit more<textarea id="m" rows="4" required></textarea></label>
-<p style="margin:0;font-size:14px;color:var(--muted)">All fields are required.</p>
+<label><span>Tell me a bit more <span class="req" aria-hidden="true">*</span></span><textarea id="m" rows="4" required></textarea></label>
+<p style="margin:0;font-size:14px;color:var(--muted)">* All fields are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Send it over →</button>
 <p id="note" role="status">This opens a pre-filled email to me, so you can check it before sending.</p>
 <p style="font-size:14px;color:var(--muted)">I only use your details to reply to your enquiry. See the <a href="privacy.html">privacy notice</a>.</p>
@@ -203,12 +204,11 @@ nav .wm{font-size:24px}
 
 <footer>
 <span class="wm" style="font-size:20px">Pixel North</span>
-<span>Small business sites, sorted.</span>
+<span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span>
 <span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
 <div class="legal">
 <p>J E Darlington Holdings Limited trading as Pixel North is registered in England and Wales (Company Number 16490976).</p>
 <p>© Copyright 2026 J E Darlington Holdings Limited. All Rights Reserved.</p>
-<p>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</p>
 </div>
 </footer>
 
