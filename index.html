@@ -121,7 +121,7 @@ nav .wm{font-size:24px}
 .hello{font-weight:500;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.5px;color:var(--primary);margin:20px 0 0}
 .hello+p{margin-top:8px}
 .hero p strong{font-weight:700;color:#1A1033}
-.close .sorted{font-weight:700;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:5px}
+.close .sorted{font-style:italic}
 .card{position:relative}
 .tick{position:absolute;top:16px;right:16px;width:26px;height:26px}
 .ico{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--panel);color:var(--primary);margin-bottom:14px}
@@ -147,14 +147,37 @@ nav .wm{font-size:24px}
 [data-season="halloween"] .season-strip{display:flex;justify-content:center;align-items:center;gap:10px;background:#1A1033;color:#E9E0FF;font-size:14px;line-height:1.4;padding:8px 24px;text-align:center}
 .season-strip a{color:#FF9A4D}
 .pumpkin{display:inline-block;width:20px;height:20px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 7 7%22 shape-rendering=%22crispEdges%22%3E%3Crect x=%223%22 y=%220%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%221%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%223%22 y=%221%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%224%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%222%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%222%22 y=%223%22 width=%223%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%225%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%226%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%224%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%222%22 y=%225%22 width=%223%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%225%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%226%22 width=%225%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3C/svg%3E") center/contain no-repeat}
-[data-season="halloween"] .hero h1 i{width:.42em;height:.42em;margin-left:.1em;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 7 7%22 shape-rendering=%22crispEdges%22%3E%3Crect x=%223%22 y=%220%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%221%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%223%22 y=%221%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%224%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%222%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%222%22 y=%223%22 width=%223%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%225%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%226%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%224%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%222%22 y=%225%22 width=%223%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%225%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%226%22 width=%225%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3C/svg%3E") center/contain no-repeat}
 .credit{display:inline-flex;align-items:center;gap:8px}
 .factory{width:22px;height:22px;fill:none;stroke:var(--primary);stroke-width:26;stroke-linecap:butt;stroke-linejoin:miter;flex:none}
+#quotes{padding-top:0;padding-bottom:0}
+#quotes .qhead{padding-top:64px}
+#quotes .chev{margin-top:36px}
+#quotes .s1,#quotes .s3{background:#2A1B55}
+#quotes .qclose{margin:0;padding-top:44px;padding-bottom:64px;color:#fff}
+.season-deco,.web{display:none}
+[data-season="halloween"] .hero,[data-season="halloween"] .band{position:relative}
+[data-season="halloween"] .band{overflow:hidden}
+[data-season="halloween"] .season-deco{display:block;position:absolute;inset:0;pointer-events:none;z-index:0}
+[data-season="halloween"] .hero>*:not(.season-deco),[data-season="halloween"] .band>*:not(.season-deco){position:relative;z-index:1}
+[data-season="halloween"] .web{display:block;position:absolute;fill:none;stroke:#E9E0FF;stroke-width:1;opacity:.22}
+[data-season="halloween"] .web.w1{top:0;right:0;width:130px;height:130px;transform:scaleX(-1)}
+[data-season="halloween"] .web.ws{width:44px;height:44px;top:0;opacity:.35}
+[data-season="halloween"] .web.ws.l{left:0}
+[data-season="halloween"] .web.ws.r{right:0;transform:scaleX(-1)}
+[data-season="halloween"] .season-strip{position:relative;overflow:hidden}
+[data-season="halloween"] .spider{position:absolute;top:0;right:96px;width:15px;height:38px;color:#E9E0FF;fill:#E9E0FF;opacity:.5}
+[data-season="halloween"] .bat{position:absolute;width:38px;height:19px;fill:#1A1033;opacity:.6}
+[data-season="halloween"] .bat.b1{left:48%;top:14px}
+[data-season="halloween"] .bat.b2{left:55%;top:40px;width:26px;height:13px;transform:rotate(-12deg);opacity:.4}
+[data-season="halloween"] .bat.b3{left:43%;top:44px;width:20px;height:10px;transform:rotate(10deg);opacity:.35}
+@media (prefers-reduced-motion:no-preference){[data-season="halloween"] .bat.b1{animation:flit 5s ease-in-out infinite}}
+@keyframes flit{50%{transform:translateY(-5px) rotate(4deg)}}
+@media (max-width:960px){[data-season="halloween"] .bat.b1{left:60%;top:6px}[data-season="halloween"] .bat.b2{left:72%;top:18px}[data-season="halloween"] .bat.b3{left:50%;top:14px}}
 </style>
 </head>
 <body data-season="halloween">
 <!-- Seasonal theme: delete data-season="halloween" from the <body> tag above to switch the Halloween touches off. -->
-<div class="season-strip" role="note"><span class="pumpkin" aria-hidden="true"></span><span>Happy Halloween! A little seasonal touch from Pixel North. Want your site to mark the season too? <a href="#" data-go="quotes">Get a quote</a></span></div>
+<div class="season-strip" role="note"><svg class="web ws l" viewBox="0 0 120 120" aria-hidden="true"><path d="M0 0L120.0 0.0M0 0L110.9 45.9M0 0L84.9 84.9M0 0L45.9 110.9M0 0L0.0 120.0M28.0 0.0Q24.2 4.8 25.9 10.7Q20.6 13.7 19.8 19.8Q13.7 20.6 10.7 25.9Q4.8 24.2 0.0 28.0M52.0 0.0Q45.0 9.0 48.0 19.9Q38.2 25.5 36.8 36.8Q25.5 38.2 19.9 48.0Q9.0 45.0 0.0 52.0M78.0 0.0Q67.5 13.4 72.1 29.8Q57.2 38.3 55.2 55.2Q38.3 57.2 29.8 72.1Q13.4 67.5 0.0 78.0M104.0 0.0Q90.0 17.9 96.1 39.8Q76.3 51.0 73.5 73.5Q51.0 76.3 39.8 96.1Q17.9 90.0 0.0 104.0"/></svg><svg class="web ws r" viewBox="0 0 120 120" aria-hidden="true"><path d="M0 0L120.0 0.0M0 0L110.9 45.9M0 0L84.9 84.9M0 0L45.9 110.9M0 0L0.0 120.0M28.0 0.0Q24.2 4.8 25.9 10.7Q20.6 13.7 19.8 19.8Q13.7 20.6 10.7 25.9Q4.8 24.2 0.0 28.0M52.0 0.0Q45.0 9.0 48.0 19.9Q38.2 25.5 36.8 36.8Q25.5 38.2 19.9 48.0Q9.0 45.0 0.0 52.0M78.0 0.0Q67.5 13.4 72.1 29.8Q57.2 38.3 55.2 55.2Q38.3 57.2 29.8 72.1Q13.4 67.5 0.0 78.0M104.0 0.0Q90.0 17.9 96.1 39.8Q76.3 51.0 73.5 73.5Q51.0 76.3 39.8 96.1Q17.9 90.0 0.0 104.0"/></svg><span class="pumpkin" aria-hidden="true"></span><span>Happy Halloween! A little seasonal touch from Pixel North. Want your site to mark the season too? <a href="#" data-go="quotes">Get a quote</a></span></div>
 
 <nav>
 <a class="wm" href="#" data-go="top">Pixel North</a>
@@ -167,6 +190,7 @@ nav .wm{font-size:24px}
 </nav>
 
 <header class="sec hero" id="top">
+<div class="season-deco" aria-hidden="true"><svg class="bat b1" viewBox="0 0 32 16" aria-hidden="true"><path d="M16 5L14.5 2 13 5C11 3.5 6 4 1 9c3-1.2 5-.8 7 1.5 1-1.8 3-1.8 4 .5 1-1.8 3-1.8 4 1.5 1-3.3 3-3.3 4-1.5 1-2.3 3-2.3 4-.5 2-2.3 4-2.7 7-1.5-5-5-10-5.5-12-4L17.5 2z"/></svg><svg class="bat b2" viewBox="0 0 32 16" aria-hidden="true"><path d="M16 5L14.5 2 13 5C11 3.5 6 4 1 9c3-1.2 5-.8 7 1.5 1-1.8 3-1.8 4 .5 1-1.8 3-1.8 4 1.5 1-3.3 3-3.3 4-1.5 1-2.3 3-2.3 4-.5 2-2.3 4-2.7 7-1.5-5-5-10-5.5-12-4L17.5 2z"/></svg><svg class="bat b3" viewBox="0 0 32 16" aria-hidden="true"><path d="M16 5L14.5 2 13 5C11 3.5 6 4 1 9c3-1.2 5-.8 7 1.5 1-1.8 3-1.8 4 .5 1-1.8 3-1.8 4 1.5 1-3.3 3-3.3 4-1.5 1-2.3 3-2.3 4-.5 2-2.3 4-2.7 7-1.5-5-5-10-5.5-12-4L17.5 2z"/></svg></div>
 <div class="hero-text">
 <h1>Small business sites, sorted<i></i></h1>
 <h2 class="hello">Hello!</h2>
@@ -177,6 +201,7 @@ nav .wm{font-size:24px}
 </header>
 
 <section class="sec band" id="why">
+<div class="season-deco" aria-hidden="true"><svg class="web w1" viewBox="0 0 120 120" aria-hidden="true"><path d="M0 0L120.0 0.0M0 0L110.9 45.9M0 0L84.9 84.9M0 0L45.9 110.9M0 0L0.0 120.0M28.0 0.0Q24.2 4.8 25.9 10.7Q20.6 13.7 19.8 19.8Q13.7 20.6 10.7 25.9Q4.8 24.2 0.0 28.0M52.0 0.0Q45.0 9.0 48.0 19.9Q38.2 25.5 36.8 36.8Q25.5 38.2 19.9 48.0Q9.0 45.0 0.0 52.0M78.0 0.0Q67.5 13.4 72.1 29.8Q57.2 38.3 55.2 55.2Q38.3 57.2 29.8 72.1Q13.4 67.5 0.0 78.0M104.0 0.0Q90.0 17.9 96.1 39.8Q76.3 51.0 73.5 73.5Q51.0 76.3 39.8 96.1Q17.9 90.0 0.0 104.0"/></svg><svg class="spider" viewBox="0 0 24 60" aria-hidden="true"><path d="M12 0V38" stroke="currentColor" stroke-width="1" fill="none"/><ellipse cx="12" cy="45" rx="4" ry="5"/><circle cx="12" cy="39" r="2.6"/><path d="M8 43L2 40M8 46L1 47M8 49L3 54M16 43L22 40M16 46L23 47M16 49L21 54" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round"/></svg></div>
 <h2>Why your business needs a modern website</h2>
 <p class="lead">Your customers are already looking for you. Without a modern, optimised website, you’re hard to find.</p>
 <div class="row">
@@ -185,7 +210,7 @@ nav .wm{font-size:24px}
 <div class="stat"><div class="sq"></div><div class="num">82%</div><p>of UK adults use Google Search, which handles around 3 billion searches a month in the UK.</p><small>Source: Ofcom, Online Nation 2025</small></div>
 <div class="stat"><div class="sq"></div><div class="num">79%</div><p>of Brits agree that a business with a well-designed website is more credible than one with only a social media page.</p><small>Source: Squarespace and YouGov survey, 2022</small></div>
 </div>
-<p class="close">A website that’s <strong class="sorted">sorted</strong> means you’re easy to find, easy to trust, and easy to contact.</p>
+<p class="close">A website that’s <em class="sorted">sorted</em> means you’re easy to find, easy to trust, and easy to contact.</p>
 </section>
 
 <section class="sec" id="faff">
@@ -212,8 +237,8 @@ nav .wm{font-size:24px}
 </div>
 </section>
 
-<section class="sec flush" id="quotes">
-<div class="wrap"><h2>How quotes work</h2></div>
+<section class="sec flush dark" id="quotes">
+<div class="wrap qhead"><h2>How quotes work</h2></div>
 <div class="chev">
 <div class="stage s1"><div class="step">1</div><h3>An initial consultation</h3><p>We talk about your business, your goals, and what you need from a website.</p></div>
 <div class="stage s2"><div class="step">2</div><h3>A clear quotation</h3><p>I send you a written quotation covering what’s included, the timeline, and the cost.</p></div>
@@ -249,7 +274,7 @@ nav .wm{font-size:24px}
 
 <footer>
 <span class="wm" style="font-size:20px">Pixel North</span>
-<span class="credit"><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg></span>
+<span class="credit"><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span></span>
 <span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
 <div class="legal">
 <div class="legal-text">
