@@ -37,7 +37,11 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag("js", new Date());
-    window.gtag("config", GA_ID);
+    // Analytics only: switch off Google's advertising features, whatever the admin settings say
+    window.gtag("config", GA_ID, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
     var s = document.createElement("script");
     s.async = true;
     s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
