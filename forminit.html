@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>Form test | Pixel North</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#fff;--text:#1A1033;--muted:#5E5675;--primary:#5B21E6;--accent:#FF3D8B;--panel:#F1EBFF;--line:#7C5CE8;--card:#4A17BF;--ink:#1A1033;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 "DM Sans",system-ui,sans-serif}
+h1,h2,h3,.wm,.num{font-family:Outfit,"Segoe UI",system-ui,sans-serif;margin:0}
+h2{font-weight:700;font-size:clamp(30px,5vw,44px);line-height:1.1;letter-spacing:-1px}
+h3{font-weight:700;font-size:23px;line-height:1.2}
+p{margin:0}
+a{color:var(--primary)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sec{padding:72px max(24px,calc((100% - 1120px)/2))}
+.row{display:flex;flex-wrap:wrap;gap:20px}
+.row>*{flex:1 1 240px}
+.wm{font-weight:700;font-size:28px;letter-spacing:-1px;color:var(--primary);display:inline-flex;align-items:flex-end;gap:4px;text-decoration:none}
+.wm::after{content:"";width:.26em;height:.26em;background:var(--accent);margin-bottom:.22em}
+nav{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:20px max(24px,calc((100% - 1120px)/2))}
+nav .wm{margin-right:auto}
+.nav-links{order:1;display:flex;align-items:center;gap:0 14px;color:var(--muted)}
+.nav-btn{order:2}
+.nav-break{display:none}
+nav a:not(.wm):not(.btn){color:var(--text);text-decoration:none}
+.btn{display:inline-block;border:0;border-radius:999px;font:500 18px "DM Sans",system-ui,sans-serif;padding:15px 28px;text-decoration:none;cursor:pointer;background:#5B21E6;color:#fff}
+.pink{background:var(--accent);color:#1A1033}
+.hero{padding-top:64px;padding-bottom:88px;display:flex;flex-wrap:wrap;gap:48px;align-items:center}
+.hero-text{flex:1 1 460px;min-width:0}
+.portrait{flex:0 1 400px;width:100%;max-width:400px;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:50%;border:6px solid var(--accent);box-shadow:0 0 0 10px var(--panel);display:block}
+.hero h1{font-weight:700;font-size:clamp(40px,6.4vw,84px);line-height:1;letter-spacing:-.04em;max-width:900px}
+.hero h1 i{display:inline-block;width:.2em;height:.2em;background:var(--accent);margin-left:.06em}
+.hero p{font-size:21px;max-width:560px;margin:28px 0}
+.band{background:#5B21E6;color:#fff}
+.band p.lead{font-size:20px;max-width:640px;color:#E9E0FF;margin:16px 0 32px}
+.stat{background:var(--card);border-radius:20px;padding:28px}
+.sq{width:12px;height:12px;background:var(--accent);margin-bottom:12px}
+.num{font-weight:700;font-size:56px;line-height:1;letter-spacing:-2px}
+.stat p{font-size:18px;line-height:1.5;margin-top:12px}
+.stat small{display:block;font-size:14px;color:#D9CCFF;margin-top:12px}
+.close{font:500 24px/1.3 Outfit,system-ui,sans-serif;max-width:760px;margin-top:32px}
+.card{background:var(--panel);border-radius:20px;padding:28px}
+.card h3{color:var(--primary);margin-bottom:10px}
+.intro{max-width:640px;margin:14px 0 32px;font-size:19px}
+.dark{background:var(--ink);color:#fff}
+.dark p{color:#D9CCFF}
+.step{width:44px;height:44px;border-radius:12px;background:var(--accent);color:#1A1033;display:grid;place-items:center;font:700 22px Outfit,sans-serif;margin-bottom:12px}
+.dark h3{font-weight:500;margin-bottom:8px}
+form{background:var(--panel);border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:18px}
+label{font-weight:500;font-size:15px;display:flex;flex-direction:column;gap:6px}
+input,select,textarea{font:inherit;font-size:16px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);width:100%}
+.two{display:flex;flex-wrap:wrap;gap:18px}.two>*{flex:1 1 180px}
+#note{font-size:15px;color:var(--muted)}
+#note:empty{display:none}
+#note.ok,#note.err{padding:14px 16px;border-radius:12px;border:1px solid;font-size:16px;line-height:1.5}
+#note.ok{background:#E8F7EE;border-color:#2E9E5B;color:#14532D}
+#note.ok::before{content:"\2713";font-weight:700;margin-right:8px}
+#note.err{background:#FDECEF;border-color:#D64560;color:#7A1F31}
+#note.err a,#note.ok a{color:inherit}
+footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;color:var(--muted);font-size:15px}
+.contact{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
+.contact>*{flex:1 1 360px}
+@media (max-width:900px){
+.hero{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;padding-top:36px;padding-bottom:64px;gap:24px}
+.hero-text{display:contents}
+.hero h1{order:1}
+.portrait{order:2;align-self:center;flex:0 0 auto;width:136px;max-width:136px;border-width:4px;box-shadow:0 0 0 7px var(--panel);transition-delay:.1s!important}
+.hero .hello{order:3;margin:0 0 -12px}
+.hero p,.hero .hello+p{order:4;margin:0}
+.hero .btn{order:5}
+}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+@media (max-width:700px){
+nav{gap:0 12px}
+nav .wm{font-size:24px}
+.nav-btn{order:3;margin-left:auto;margin-top:8px;padding:10px 18px;font-size:16px}
+.nav-break{display:block;order:2;flex:1 1 100%;height:0;margin:0}
+.nav-links{order:1;flex:0 0 auto;justify-content:flex-end}
+}
+.req{color:var(--primary);margin-left:2px}
+.alt{background:var(--panel)}
+.alt .card{background:var(--bg)}
+.legal{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal-text{display:flex;flex-direction:column;gap:6px;flex:1 1 320px}
+.legal p{margin:0}
+.fb{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--panel);color:var(--primary)}
+.fb:hover{background:var(--primary);color:#fff}
+.fb svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hello{line-height:1.1;font-weight:500;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.5px;color:var(--primary);margin:40px 0 0}
+.hello+p{margin-top:8px}
+.hero p strong{font-weight:700;color:#1A1033}
+.close .sorted{font-style:italic;font-weight:inherit;text-decoration:none}
+.card{position:relative}
+.tick{position:absolute;top:16px;right:16px;width:26px;height:26px}
+.ico{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--panel);color:var(--primary);margin-bottom:14px}
+.ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.flush{padding-left:0;padding-right:0}
+.wrap{padding-left:max(24px,calc((100% - 1120px)/2));padding-right:max(24px,calc((100% - 1120px)/2))}
+.chev{--edge:max(24px,calc((100vw - 1120px)/2));--pt:48px;display:flex;margin-top:32px}
+.stage{flex:1 1 0;color:#fff;padding:44px 64px 48px}
+.stage h3{font-weight:500;margin-bottom:8px}
+.stage p{color:#E9E0FF}
+.s1{background:#1A1033;padding-left:var(--edge);clip-path:polygon(0 0,calc(100% - var(--pt)) 0,100% 50%,calc(100% - var(--pt)) 100%,0 100%)}
+.s2{background:#5B21E6;margin-left:calc(var(--pt) * -1);padding-left:80px;clip-path:polygon(0 0,calc(100% - var(--pt)) 0,100% 50%,calc(100% - var(--pt)) 100%,0 100%,var(--pt) 50%)}
+.s3{background:#1A1033;margin-left:calc(var(--pt) * -1);padding-left:80px;padding-right:var(--edge);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,var(--pt) 50%)}
+.qclose{font:500 22px/1.3 Outfit,system-ui,sans-serif;text-align:center;margin-top:40px}
+@media (max-width:960px){
+.chev{flex-direction:column;--pt:30px}
+.stage{padding:40px var(--edge)}
+.s1{padding-bottom:calc(var(--pt) + 28px);clip-path:polygon(0 0,100% 0,100% calc(100% - var(--pt)),50% 100%,0 calc(100% - var(--pt)))}
+.s2{margin-left:0;margin-top:calc(var(--pt) * -1);padding-top:calc(var(--pt) + 28px);padding-bottom:calc(var(--pt) + 28px);clip-path:polygon(0 0,50% var(--pt),100% 0,100% calc(100% - var(--pt)),50% 100%,0 calc(100% - var(--pt)))}
+.s3{margin-left:0;margin-top:calc(var(--pt) * -1);padding-top:calc(var(--pt) + 28px);padding-bottom:44px;clip-path:polygon(0 0,50% var(--pt),100% 0,100% 100%,0 100%)}
+}
+.season-strip{display:none}
+[data-season="halloween"] .season-strip{display:flex;justify-content:center;align-items:center;gap:10px;background:#1A1033;color:#E9E0FF;font-size:14px;line-height:1.4;padding:8px 24px;text-align:center}
+.season-strip a{color:#FF9A4D}
+.pumpkin{display:inline-block;width:20px;height:20px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 7 7%22 shape-rendering=%22crispEdges%22%3E%3Crect x=%223%22 y=%220%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%221%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%223%22 y=%221%22 width=%221%22 height=%221%22 fill=%22%235B21E6%22/%3E%3Crect x=%224%22 y=%221%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%222%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%222%22 y=%223%22 width=%223%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%225%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%226%22 y=%223%22 width=%221%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%224%22 width=%227%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%220%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%222%22 y=%225%22 width=%223%22 height=%221%22 fill=%22%231A1033%22/%3E%3Crect x=%225%22 y=%225%22 width=%222%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3Crect x=%221%22 y=%226%22 width=%225%22 height=%221%22 fill=%22%23FF7A1A%22/%3E%3C/svg%3E") center/contain no-repeat}
+.credit{display:inline-flex;align-items:center;gap:8px}
+.factory{width:22px;height:22px;fill:none;stroke:var(--primary);stroke-width:26;stroke-linecap:butt;stroke-linejoin:miter;flex:none}
+#quotes{padding-top:0;padding-bottom:0}
+#quotes .qhead{padding-top:64px}
+#quotes .chev{margin-top:36px}
+#quotes .s1,#quotes .s3{background:#2A1B55}
+@media (max-width:960px){#quotes{background:#2A1B55}}
+#quotes .qclose{margin:0;padding-top:44px;padding-bottom:64px;color:#fff}
+.season-deco,.web{display:none}
+[data-season="halloween"] .hero,[data-season="halloween"] .band{position:relative}
+[data-season="halloween"] .band{overflow:hidden}
+[data-season="halloween"] .season-deco{display:block;position:absolute;inset:0;pointer-events:none;z-index:0}
+[data-season="halloween"] .hero>*:not(.season-deco),[data-season="halloween"] .band>*:not(.season-deco){position:relative;z-index:1}
+[data-season="halloween"] .web{display:block;position:absolute;fill:none;stroke:#E9E0FF;stroke-width:1;opacity:.22}
+[data-season="halloween"] .web.w1{top:0;right:0;width:130px;height:130px;transform:scaleX(-1)}
+[data-season="halloween"] .web.ws{width:44px;height:44px;top:0;opacity:.35}
+[data-season="halloween"] .web.ws.l{left:0}
+[data-season="halloween"] .web.ws.r{right:0;transform:scaleX(-1)}
+[data-season="halloween"] .season-strip{position:relative;overflow:hidden}
+[data-season="halloween"] .spider{position:absolute;top:0;right:96px;width:15px;height:38px;color:#E9E0FF;fill:#E9E0FF;opacity:.5}
+[data-season="halloween"] .bat{position:absolute;width:52px;height:26px;fill:#1A1033;opacity:.75}
+[data-season="halloween"] .bat.b1{left:48%;top:14px}
+[data-season="halloween"] .bat.b2{left:55%;top:40px;width:26px;height:13px;transform:rotate(-12deg);opacity:.4}
+[data-season="halloween"] .bat.b3{left:43%;top:44px;width:20px;height:10px;transform:rotate(10deg);opacity:.35}
+@media (prefers-reduced-motion:no-preference){[data-season="halloween"] .bat.b1{animation:flit 5s ease-in-out infinite}}
+@keyframes flit{50%{transform:translateY(-5px) rotate(4deg)}}
+@media (max-width:960px){[data-season="halloween"] .bat.b1{left:60%;top:6px}[data-season="halloween"] .bat.b2{left:72%;top:18px}[data-season="halloween"] .bat.b3{left:50%;top:14px}}
+
+[data-season="halloween"] #faff,[data-season="halloween"] #services,[data-season="halloween"] #contact,[data-season="halloween"] footer{position:relative}
+[data-season="halloween"] #faff,[data-season="halloween"] #services,[data-season="halloween"] #contact,[data-season="halloween"] footer{overflow:hidden}
+[data-season="halloween"] #faff>*:not(.season-deco),[data-season="halloween"] #services>*:not(.season-deco),[data-season="halloween"] #contact>*:not(.season-deco),[data-season="halloween"] footer>*:not(.season-deco){position:relative;z-index:1}
+[data-season="halloween"] .hero .web.hw{left:0;bottom:0;top:auto;width:150px;height:150px;transform:scaleY(-1);stroke:#5B21E6;opacity:.2}
+[data-season="halloween"] #faff .web,[data-season="halloween"] #contact .web,[data-season="halloween"] #services .web,[data-season="halloween"] footer .web{stroke:#5B21E6;opacity:.22;width:130px;height:130px;top:0}
+[data-season="halloween"] .web.wl{left:0}
+[data-season="halloween"] .web.wr{right:0;transform:scaleX(-1)}
+[data-season="halloween"] footer .web.wr{top:auto;bottom:0;right:auto;left:0;transform:scaleY(-1)}
+[data-season="halloween"] .ghost{position:absolute;right:6%;top:26px;width:46px;height:51px;opacity:.9;animation:float 4s ease-in-out infinite}
+[data-season="halloween"] .bat.b4{left:30%;top:24px;width:40px;height:20px;transform:rotate(-8deg);opacity:.65}
+[data-season="halloween"] .bat.b5{left:63%;top:16px;width:48px;height:24px;transform:rotate(8deg)}
+[data-season="halloween"] .bat.b6{left:38%;top:62px;width:28px;height:14px;opacity:.55}
+[data-season="halloween"] .bat.b7{right:18%;top:18px;fill:#5B21E6;opacity:.65}
+[data-season="halloween"] .bat.b8{right:22%;bottom:30px;fill:#5B21E6;opacity:.5;width:30px;height:15px}
+[data-season="halloween"] .bat.b9{right:10%;top:26px;fill:#5B21E6;opacity:.65}
+[data-season="halloween"] .bat.b10{left:20%;top:10px;fill:#5B21E6;opacity:.5;width:28px;height:14px}
+[data-season="halloween"] .bat.b11{left:26%;top:30px;fill:#5B21E6;opacity:.4;width:18px;height:9px}
+[data-season="halloween"] .pumpkin.pk{position:absolute;right:4%;bottom:22px;width:30px;height:30px}
+[data-season="halloween"] .pumpkin.pk2{position:absolute;right:3%;bottom:18px;width:30px;height:30px}
+[data-season="halloween"] .spider.sa{left:16%;right:auto;height:38px;animation:dangle 4.5s ease-in-out infinite}
+[data-season="halloween"] .spider.sb{right:30%;height:30px;width:12px;animation:dangle 5.5s ease-in-out infinite .8s}
+[data-season="halloween"] .spider.sc{right:30%;top:0;fill:#5B21E6;color:#5B21E6;opacity:.6;animation:dangle 5s ease-in-out infinite}
+@keyframes dangle{50%{transform:translateY(8px)}}
+@keyframes float{50%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:no-preference){[data-season="halloween"] .bat.b5,[data-season="halloween"] .bat.b8{animation:flit 6s ease-in-out infinite}[data-season="halloween"] .bat.b4,[data-season="halloween"] .bat.b9{animation:flit 7s ease-in-out infinite 1s}}
+@media (prefers-reduced-motion:reduce){[data-season="halloween"] .spider,[data-season="halloween"] .ghost{animation:none}}
+@media (max-width:960px){[data-season="halloween"] .bat{width:34px;height:17px}[data-season="halloween"] .bat.b4{left:8%;top:10px}[data-season="halloween"] .bat.b5{left:82%;top:8px}[data-season="halloween"] .bat.b6{display:none}[data-season="halloween"] .hero .web.hw{width:100px;height:100px}[data-season="halloween"] .ghost{width:26px;height:29px}}
+</style>
+</head>
+<body>
+<nav><a class="wm" href="/">Pixel North</a></nav>
+<main>
+<section class="sec contact" id="contact">
+<div>
+<h2>Tell me about your business</h2>
+<p class="meta" style="color:var(--muted);font-size:15px;margin:8px 0 0">Test page for the Forminit form. Not linked from the site.</p>
+<p class="intro" style="margin-bottom:0">Pop your details in and I’ll get back to you with a few questions and a quotation. Or let’s meet in person…coffee is on me :)</p>
+</div>
+<form id="f">
+<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+<div class="two">
+<label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="fn" name="fi-sender-firstName" required autocomplete="given-name"></label>
+<label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="ln" name="fi-sender-lastName" required autocomplete="family-name"></label>
+</div>
+<label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="e" name="fi-sender-email" type="email" required autocomplete="email"></label>
+<label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="b" name="fi-text-business" required autocomplete="organization"></label>
+<label><span>Current website address (optional)</span><input id="site" name="fi-text-currentWebsite" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="www.example.co.uk"></label>
+<label><span>What do you need? <span class="req" aria-hidden="true">*</span></span>
+<select id="w" name="fi-select-need" required><option value="" selected disabled>Please choose</option><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
+</label>
+<label><span>Tell me a bit more <span class="req" aria-hidden="true">*</span></span><textarea id="m" name="fi-text-message" rows="4" required></textarea></label>
+<p style="margin:0;font-size:14px;color:var(--muted)">Fields marked * are required.</p>
+<button class="btn pink" type="submit" style="align-self:flex-start">Send it over →</button>
+<p id="note" role="status"></p>
+<p style="font-size:14px;color:var(--muted)">Your details are sent to me by email through a form service, and I only use them to reply to your enquiry. See the <a href="privacy.html">privacy notice</a>.</p>
+</form>
+</section>
+</main>
+<footer><span class="wm" style="font-size:20px">Pixel North</span><span>Hidden test page.</span></footer>
+<script src="https://forminit.com/sdk/v1/forminit.js"></script>
+<script>
+// Paste the Forminit form ID between the quotes, then publish.
+var FORM_ID = "";
+var EMAIL = "jedarlington@live.co.uk";
+var siteEl = document.getElementById("site");
+var SITE_RE = /^(https?:\/\/)?([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}(:\d+)?([\/?#]\S*)?$/i;
+function checkSite(){
+  var val = siteEl.value.trim();
+  siteEl.setCustomValidity(!val || SITE_RE.test(val) ? "" : "Please enter a website address, like www.example.co.uk");
+}
+siteEl.addEventListener("input", checkSite);
+document.getElementById("f").addEventListener("submit", async function(ev){
+  ev.preventDefault();
+  var form = ev.target;
+  var note = document.getElementById("note");
+  var btn = form.querySelector('button[type="submit"]');
+  var say = function(text, kind){ note.className = kind || ""; note.textContent = text; };
+  if (document.getElementById("gotcha").value.trim()) return; // a bot filled the hidden field
+  if (!FORM_ID) { say("Form ID not set yet. Add it to forminit.html.", "err"); return; }
+  var first = document.getElementById("fn").value.trim();
+  var data = new FormData(form);
+  var val = siteEl.value.trim();
+  if (val && !/^https?:\/\//i.test(val)) data.set("fi-text-currentWebsite", "https://" + val);
+  var label = btn.textContent;
+  btn.disabled = true; btn.textContent = "Sending…"; say("");
+  try {
+    var forminit = new Forminit();
+    var res = await forminit.submit(FORM_ID, data);
+    if (res.error) throw new Error(res.error.message || "error");
+    form.reset();
+    say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.", "ok");
+  } catch (e) {
+    console.error(e);
+    say("Sorry, that didn’t send. Please try again, or email me at " + EMAIL + ".", "err");
+  }
+  btn.disabled = false; btn.textContent = label;
+});
+</script>
+</body>
+</html>
