@@ -374,16 +374,16 @@ nav .wm{font-size:24px}
 <form id="f">
 <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
 <div class="two">
-<label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="fn" required autocomplete="given-name"></label>
-<label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="ln" required autocomplete="family-name"></label>
+<label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="fn" name="fi-sender-firstName" required autocomplete="given-name"></label>
+<label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="ln" name="fi-sender-lastName" required autocomplete="family-name"></label>
 </div>
-<label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="e" type="email" required autocomplete="email"></label>
-<label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="b" required autocomplete="organization"></label>
-<label><span>Current website address (optional)</span><input id="site" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="www.example.co.uk"></label>
+<label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="e" name="fi-sender-email" type="email" required autocomplete="email"></label>
+<label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="b" name="fi-text-business" required autocomplete="organization"></label>
+<label><span>Current website address (optional)</span><input id="site" name="fi-text-currentWebsite" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="www.example.co.uk"></label>
 <label><span>What do you need? <span class="req" aria-hidden="true">*</span></span>
-<select id="w" required><option value="" selected disabled>Please choose</option><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
+<select id="w" name="fi-select-need" required><option value="" selected disabled>Please choose</option><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
 </label>
-<label><span>Tell me a bit more <span class="req" aria-hidden="true">*</span></span><textarea id="m" rows="4" required></textarea></label>
+<label><span>Tell me a bit more <span class="req" aria-hidden="true">*</span></span><textarea id="m" name="fi-text-message" rows="4" required></textarea></label>
 <p style="margin:0;font-size:14px;color:var(--muted)">Fields marked * are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Send it over →</button>
 <p id="note" role="status"></p>
@@ -408,6 +408,7 @@ nav .wm{font-size:24px}
 </div>
 </footer>
 
+<script src="https://forminit.com/sdk/v1/forminit.js" defer></script>
 <script>
 // Replace with the address enquiries should go to.
 var EMAIL = "jedarlington@live.co.uk";
@@ -418,12 +419,9 @@ document.querySelectorAll("[data-go]").forEach(function(a){
     if (t) t.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
   });
 });
-// Contact form: sent through Formspree, which emails each enquiry to me.
-// Create a form at formspree.io, then paste its ID between the quotes on the next line
-// (the ID is the end of the form's endpoint URL, for example https://formspree.io/f/xyzabcde).
-// Until that is done the form falls back to opening a pre-filled email.
-var FORM_ID = "moeeeagy";
-var FORM_ENDPOINT = "https://formspree.io/f/" + FORM_ID;
+// Contact form: sent through Forminit, which emails each enquiry to me.
+// If FORM_ID is empty, or Forminit can't be reached, the form falls back to a pre-filled email.
+var FORM_ID = "yyje3l2l97x";
 var siteEl = document.getElementById("site");
 var SITE_RE = /^(https?:\/\/)?([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}(:\d+)?([\/?#]\S*)?$/i;
 function checkSite(){
@@ -435,7 +433,7 @@ function siteVal(){
   return val && !/^https?:\/\//i.test(val) ? "https://" + val : val;
 }
 siteEl.addEventListener("input", checkSite);
-document.getElementById("f").addEventListener("submit", function(ev){
+document.getElementById("f").addEventListener("submit", async function(ev){
   ev.preventDefault();
   var form = ev.target;
   var v = function(id){ return document.getElementById(id).value.trim(); };
@@ -455,9 +453,12 @@ document.getElementById("f").addEventListener("submit", function(ev){
       note.appendChild(document.createTextNode("."));
     }
   };
-  if (!FORM_ID) {
+  var mailtoHref = function(){
     var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nCurrent website: " + siteVal() + "\nNeed: " + v("w") + "\n\n" + v("m");
-    var href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
+    return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
+  };
+  if (!FORM_ID) {
+    var href = mailtoHref();
     say("Your email app should open. If it doesn’t, ", href, "open the pre-filled email");
     window.location.href = href;
     return;
@@ -466,24 +467,19 @@ document.getElementById("f").addEventListener("submit", function(ev){
   btn.disabled = true;
   btn.textContent = "Sending…";
   say("");
-  fetch(FORM_ENDPOINT, {
-    method: "POST",
-    headers: {"Accept": "application/json", "Content-Type": "application/json"},
-    body: JSON.stringify({
-      name: name, first_name: first, last_name: v("ln"), email: v("e"),
-      business: v("b"), current_website: siteVal(), need: v("w"), message: v("m"),
-      _subject: "Website enquiry from " + name
-    })
-  }).then(function(r){
-    if (!r.ok) throw new Error("status " + r.status);
+  try {
+    if (typeof Forminit === "undefined") throw new Error("Forminit did not load");
+    var data = new FormData(form);
+    data.set("fi-text-currentWebsite", siteVal());
+    var res = await new Forminit().submit(FORM_ID, data);
+    if (res.error) throw new Error(res.error.message || "Forminit error");
     form.reset();
     say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.", null, null, "ok");
-  }).catch(function(){
+  } catch (e) {
     say("Sorry, that didn’t send. Please try again, or email me at ", "mailto:" + EMAIL, EMAIL, "err");
-  }).then(function(){
-    btn.disabled = false;
-    btn.textContent = label;
-  });
+  }
+  btn.disabled = false;
+  btn.textContent = label;
 });
 (function(){
   var els = [];
