@@ -71,6 +71,31 @@
     return d;
   }
 
+  var ALLOWED = {
+    "/privacy.html": 1, "/cookies.html": 1, "/#contact": 1, "/#services": 1, "/#quotes": 1, "/#why": 1,
+    "mailto:jedarlington@live.co.uk": 1
+  };
+
+  // Show a reply as text, turning [label](url) into links, but only for approved urls.
+  function richText(el, text) {
+    el.textContent = "";
+    var re = /\[([^\]\n]{1,60})\]\(([^)\s]{1,200})\)/g, last = 0, m;
+    while ((m = re.exec(text))) {
+      if (m.index > last) el.appendChild(document.createTextNode(text.slice(last, m.index)));
+      if (ALLOWED[m[2]] === 1) {
+        var a = document.createElement("a");
+        a.href = m[2];
+        a.textContent = m[1];
+        if (m[2].indexOf("/#") === 0) a.addEventListener("click", function () { setTimeout(close, 0); });
+        el.appendChild(a);
+      } else {
+        el.appendChild(document.createTextNode(m[1]));
+      }
+      last = re.lastIndex;
+    }
+    if (last < text.length) el.appendChild(document.createTextNode(text.slice(last)));
+  }
+
   function fallback() {
     var d = add("Sorry, I can’t answer right now. Please use the contact form, or email ", "bot");
     var a = document.createElement("a");
@@ -119,7 +144,7 @@
       .then(function (data) {
         if (!data || !data.reply) throw new Error("empty");
         wait.className = "m bot";
-        wait.textContent = data.reply;
+        richText(wait, data.reply);
         history.push({ role: "assistant", content: data.reply });
       })
       .catch(function () {
