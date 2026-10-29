@@ -1,12 +1,13 @@
-// Pixel North website assistant. Cloudflare Pages Function at POST /api/chat.
-// Needs a Workers AI binding named AI (Pages > Settings > Bindings).
+// Pixel North website assistant. Cloudflare Worker: handles POST /api/chat,
+// and serves everything else from the static site files (404.html included).
+// The Workers AI binding named AI is declared in wrangler.jsonc.
 
 const MODEL = "@cf/meta/llama-3.1-8b-instruct";
 const MAX_MESSAGES = 6;      // recent turns sent to the model
 const MAX_CHARS = 500;       // per message
 const MAX_BODY = 6000;       // bytes
 
-const ALLOWED_HOSTS = [/^pixel-north\.co\.uk$/, /^www\.pixel-north\.co\.uk$/, /^([a-z0-9-]+\.)?pixel-north[a-z0-9-]*\.pages\.dev$/];
+const ALLOWED_HOSTS = [/^pixel-north\.co\.uk$/, /^www\.pixel-north\.co\.uk$/, /^([a-z0-9-]+\.)?pixel-north[a-z0-9-]*\.([a-z0-9-]+\.)?(pages|workers)\.dev$/];
 
 const SITE_KNOWLEDGE = `
 ABOUT PIXEL NORTH
@@ -76,7 +77,7 @@ function originAllowed(request) {
   }
 }
 
-export async function onRequestPost({ request, env }) {
+async function handleChat(request, env) {
   if (!originAllowed(request)) return json({ error: "forbidden" }, 403);
   if (!env.AI) return json({ error: "not_configured" }, 503);
 
@@ -110,6 +111,14 @@ export async function onRequestPost({ request, env }) {
   }
 }
 
-export function onRequest() {
-  return json({ error: "method_not_allowed" }, 405);
-}
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname === "/api/chat") {
+      if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
+      return handleChat(request, env);
+    }
+    if (url.pathname.startsWith("/api/")) return json({ error: "not_found" }, 404);
+    return env.ASSETS.fetch(request);
+  },
+};
