@@ -5,13 +5,16 @@
   if (window.__pnChat) return;
   window.__pnChat = true;
 
+  var AVATAR = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%231A1033%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%221%22%20width%3D%222%22%20height%3D%222%22%20fill%3D%22%23FF3D8B%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%223%22%20width%3D%222%22%20height%3D%221%22%20fill%3D%22%23F1EBFF%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%229%22%20fill%3D%22%235B21E6%22%2F%3E%3Crect%20x%3D%222%22%20y%3D%227%22%20width%3D%221%22%20height%3D%223%22%20fill%3D%22%234A18C4%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%227%22%20width%3D%221%22%20height%3D%223%22%20fill%3D%22%234A18C4%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%225%22%20width%3D%228%22%20height%3D%227%22%20fill%3D%22%23F1EBFF%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%226%22%20width%3D%221%22%20height%3D%222%22%20fill%3D%22%231A1033%22%2F%3E%3Crect%20x%3D%2210%22%20y%3D%226%22%20width%3D%221%22%20height%3D%222%22%20fill%3D%22%231A1033%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23FF3D8B%22%2F%3E%3Crect%20x%3D%2210%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23FF3D8B%22%2F%3E%3Crect%20x%3D%226%22%20y%3D%2210%22%20width%3D%224%22%20height%3D%221%22%20fill%3D%22%23FF3D8B%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%2213%22%20width%3D%228%22%20height%3D%222%22%20fill%3D%22%235B21E6%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2213%22%20width%3D%226%22%20height%3D%221%22%20fill%3D%22%234A18C4%22%2F%3E%3C%2Fsvg%3E";
+
   var CSS =
     "#pn-chat-btn{position:fixed;right:16px;bottom:16px;z-index:2147482000;display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;background:#5B21E6;color:#fff;font:500 16px/1 'DM Sans',system-ui,sans-serif;padding:14px 20px;border-radius:999px;box-shadow:0 6px 20px rgba(26,16,51,.3)}" +
     "#pn-chat-btn:hover{background:#4A18C4}#pn-chat-btn:focus-visible,#pn-chat input:focus-visible,#pn-chat button:focus-visible{outline:3px solid #FF3D8B;outline-offset:2px}" +
-    "#pn-chat-btn i{display:block;width:9px;height:9px;background:#FF3D8B}" +
+    "#pn-chat-btn img{display:block;width:26px;height:26px;image-rendering:pixelated}" +
     "#pn-chat{position:fixed;right:16px;bottom:16px;z-index:2147482001;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100dvh - 32px));display:none;flex-direction:column;background:#fff;color:#1A1033;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(26,16,51,.35);font:400 15px/1.45 'DM Sans',system-ui,sans-serif;color-scheme:light}" +
     "#pn-chat.open{display:flex}" +
     "#pn-chat header{background:#5B21E6;color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}" +
+    "#pn-chat header .who{display:flex;align-items:center;gap:12px}#pn-chat header .who img{width:44px;height:44px;image-rendering:pixelated;flex:none}" +
     "#pn-chat header b{font:700 18px 'Outfit',system-ui,sans-serif;letter-spacing:-.3px}#pn-chat header span{display:block;font-size:12.5px;opacity:.85}" +
     "#pn-chat header button{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:2px 8px;border-radius:8px}" +
     "#pn-chat .log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#F1EBFF}" +
@@ -36,14 +39,14 @@
   btn.type = "button";
   btn.setAttribute("aria-haspopup", "dialog");
   btn.setAttribute("aria-expanded", "false");
-  btn.innerHTML = "<i></i>Ask a question";
+  btn.innerHTML = '<img alt="" src="' + AVATAR + '">Ask Pixel';
 
   var box = document.createElement("div");
   box.id = "pn-chat";
   box.setAttribute("role", "dialog");
-  box.setAttribute("aria-label", "Ask Pixel North a question");
+  box.setAttribute("aria-label", "Chat with Pixel, the Pixel North assistant");
   box.innerHTML =
-    '<header><div><b>Ask Pixel North</b><span>AI assistant, not James</span></div><button type="button" aria-label="Close chat">&times;</button></header>' +
+    '<header><div class="who"><img alt="" src="' + AVATAR + '"><div><b>Pixel</b><span>Pixel North\u2019s AI assistant, not James</span></div></div><button type="button" aria-label="Close chat">&times;</button></header>' +
     '<div class="log" role="log" aria-live="polite"></div>' +
     '<div class="note">AI answers can be wrong, and quotations only come from James. Please don’t share personal details here. <a href="/privacy.html">Privacy</a></div>' +
     '<form><input type="text" maxlength="500" placeholder="Type your question" aria-label="Your question" autocomplete="off"><button type="submit">Send</button></form>';
@@ -81,7 +84,7 @@
     box.classList.add("open");
     btn.style.display = "none";
     btn.setAttribute("aria-expanded", "true");
-    if (!log.children.length) add("Hi, I’m the Pixel North website assistant. Ask me about the services, how quotes work, or how to get in touch.", "bot");
+    if (!log.children.length) add("Hi, I’m Pixel, the Pixel North website assistant. Ask me about the services, how quotes work, or how to get in touch.", "bot");
     input.focus();
   }
 
