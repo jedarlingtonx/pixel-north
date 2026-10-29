@@ -109,20 +109,20 @@ async function handleChat(request, env) {
   }
 
   const messages = [{ role: "system", content: SYSTEM_PROMPT }, ...history];
-  let lastError = "";
+  const errors = [];
   for (const model of MODELS) {
     try {
       const out = await env.AI.run(model, { messages, max_tokens: 300, temperature: 0.3 });
       const reply = extractReply(out);
       if (reply) return json({ reply });
-      lastError = model + ": empty reply";
+      errors.push(model.split("/").pop() + " empty: " + JSON.stringify(out).slice(0, 220));
     } catch (e) {
-      lastError = model + ": " + String((e && e.message) || e);
-      console.error("AI error:", lastError);
+      errors.push(model.split("/").pop() + " error: " + String((e && e.message) || e).slice(0, 160));
+      console.error("AI error:", errors[errors.length - 1]);
     }
   }
   // TEMPORARY while testing: shows the cause. Remove "detail" before launch.
-  return json({ error: "unavailable", detail: lastError.slice(0, 300) }, 503);
+  return json({ error: "unavailable", detail: errors.join(" | ").slice(0, 700) }, 503);
 }
 
 export default {
