@@ -110,14 +110,22 @@ async function handleChat(request, env) {
 
   const messages = [{ role: "system", content: SYSTEM_PROMPT }, ...history];
   const errors = [];
+  // Several current models "think" before answering and can use up the token limit
+  // doing so, leaving an empty reply. So each model is tried first with thinking
+  // switched off, then (if that is rejected or empty) with a generous limit.
+  const attempts = [];
   for (const model of MODELS) {
+    attempts.push({ model, opts: { max_tokens: 700, temperature: 0.3, chat_template_kwargs: { enable_thinking: false } } });
+    attempts.push({ model, opts: { max_tokens: 2500, temperature: 0.3 } });
+  }
+  for (const a of attempts) {
     try {
-      const out = await env.AI.run(model, { messages, max_tokens: 300, temperature: 0.3 });
+      const out = await env.AI.run(a.model, { messages, ...a.opts });
       const reply = extractReply(out);
       if (reply) return json({ reply });
-      errors.push(model.split("/").pop() + " empty: " + JSON.stringify(out).slice(0, 220));
+      errors.push(a.model.split("/").pop() + " empty: " + JSON.stringify(out).slice(0, 160));
     } catch (e) {
-      errors.push(model.split("/").pop() + " error: " + String((e && e.message) || e).slice(0, 160));
+      errors.push(a.model.split("/").pop() + " error: " + String((e && e.message) || e).slice(0, 160));
       console.error("AI error:", errors[errors.length - 1]);
     }
   }
