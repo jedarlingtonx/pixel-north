@@ -105,12 +105,8 @@
   }
 
   function fallback() {
-    var d = add("Sorry, I can’t answer right now. Please use the contact form, or email ", "bot");
-    var a = document.createElement("a");
-    a.href = "mailto:jedarlington@live.co.uk";
-    a.textContent = "jedarlington@live.co.uk";
-    d.appendChild(a);
-    d.appendChild(document.createTextNode("."));
+    var d = add("", "bot");
+    richText(d, "Sorry, the AI models I use aren\u2019t available right now. Please try again in a moment, or contact James directly using the [contact form](/#contact).");
   }
 
   function open() {
@@ -159,6 +155,7 @@
         wait.remove();
         history.pop();
         fallback();
+        input.value = q;
       })
       .then(function () {
         busy = false;
