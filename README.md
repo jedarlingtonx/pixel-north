@@ -7,29 +7,34 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 ## Files
 
 - `index.html`: the main page
-- `privacy.html`: the privacy notice
-- `cookies.html`: the cookie policy
-- Contact form: submissions are sent through Forminit. Create a form at forminit.com and paste its ID into `FORM_ID` in the script at the bottom of `index.html`.
-- `consent.js`: the cookie banner and settings; it loads Google Analytics only after consent. Set `GA_ID` at the top of this file to your GA4 measurement ID (starts with `G-`)
+- `privacy.html`, `cookies.html`: the privacy notice and cookie policy
+- `404.html`: the branded "page not found" page
+- `free-website-terms.html`: terms for the launch free-website prize draw (hidden from search engines)
+- Contact form: submissions are sent through Forminit. The form ID is `FORM_ID` in the script at the bottom of `index.html`.
+- `consent.js`: the cookie banner and settings; it loads Google Analytics only after consent. `GA_ID` at the top is the GA4 measurement ID (starts with `G-`)
+- `chat-widget.js`: the "Ask Pixel" chat window, loaded by a script tag at the bottom of each page. Remove that tag to switch the chat off.
+- `worker/pixel-north-worker.js`: the server side of the chat. It answers `/api/chat` using Cloudflare Workers AI, reads the site's own pages for its notes, and serves everything else as normal.
+- `wrangler.jsonc`: Cloudflare settings (Worker name, AI connection, 404 page, log settings). The name must match the Worker in the Cloudflare dashboard.
+- `.assetsignore`: keeps the config and Worker code out of the public website
 - `sitemap.xml`: lists the pages for search engines
 - `images/james.jpg`: the portrait in the hero section
-- `images/og-image.png`: the preview image shown when the site is shared (1200 × 630)
+- `images/og-image.png`: the preview image shown when the site is shared (1200 x 630)
 
-## Before you publish
+## Things to check now and then
 
-1. **Set your email address.** Near the bottom of `index.html`, change the `EMAIL` value from `hello@example.com` to your real address. The contact form opens a pre-filled email to that address in the visitor's email app. To receive enquiries directly, connect a form service later.
-2. **Check the statistics.** The "Why your small business needs a website" section quotes Ofcom, ONS, DataReportal, and Squarespace/YouGov figures. Open the original sources and confirm the numbers and wording.
-3. **Add real proof when you have it.** Timelines, client sites, testimonials, and an About section are not on the page yet.
+1. **The chat model.** Cloudflare retires AI models from time to time. If Pixel starts saying "I can't answer right now", check the model names at the top of `worker/pixel-north-worker.js` against developers.cloudflare.com/workers-ai/models.
+2. **The statistics.** The "Why your business needs a modern website" section quotes Ofcom, DataReportal and Squarespace/YouGov figures. Re-check them when you update the page.
+3. **The privacy notice.** Keep it in step with any change to the form service, analytics, hosting or chat.
 
-## Deploy with GitHub Pages
+## Deploy with Cloudflare
 
-1. Create a repository and add `index.html` (and this README) to the main branch.
-2. In the repository, go to **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and the `/ (root)` folder, then save.
-4. After a minute or two, the site is live at the address shown on that page.
-5. To use your own domain, add it under **Custom domain** on the same page and set the DNS records your domain provider asks for.
+The site is a Cloudflare Worker with static assets, connected to this GitHub repository.
 
-Other static hosts (Netlify, Cloudflare Pages, Vercel) also work: point them at the repository and leave the build command empty.
+1. Push to `main`: `git add .`, `git commit -m "message"`, `git push`.
+2. Cloudflare builds automatically (`npx wrangler deploy`). Check progress under Workers & Pages, then Deployments.
+3. Hard refresh the live site (Cmd+Shift+R) to see the change.
+
+Do not add a folder called `functions`. Cloudflare reads that as a Pages project and the build fails.
 
 ## Brand reference
 

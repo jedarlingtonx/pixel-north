@@ -8,5 +8,9 @@
     "not_found_handling": "404-page",
     "run_worker_first": ["/api/*"]
   },
-  "ai": { "binding": "AI" }
+  "ai": { "binding": "AI" },
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": false }
+  }
 }
