@@ -71,7 +71,7 @@ Rules:
 - When it helps, point people to the contact form or the "Get a quote" button.
 - If someone asks about privacy, personal data, how their details are used or stored, or GDPR: answer briefly and accurately from the privacy information, then give the link to the privacy notice. If they ask about cookies, give the cookie policy link.
 - You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:
-  /privacy.html (privacy notice), /cookies.html (cookie policy), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:jedarlington@live.co.uk (email James).
+  /privacy.html (privacy notice), /cookies.html (cookie policy), /free-website-terms.html (free website competition terms), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:jedarlington@live.co.uk (email James).
   Use at most two links per answer, and never show a raw web address.
 `;
 
@@ -83,9 +83,11 @@ const CORE_FACTS = `
 
 // The live pages Pixel reads, so its answers always match the site.
 const PAGES = [
-  { label: "HOME PAGE", paths: ["/", "/index.html"] },
-  { label: "PRIVACY NOTICE (page: /privacy.html)", paths: ["/privacy.html", "/privacy"] },
-  { label: "COOKIE POLICY (page: /cookies.html)", paths: ["/cookies.html", "/cookies"] },
+  { label: "HOME PAGE", paths: ["/", "/index.html"], required: true },
+  { label: "PRIVACY NOTICE (page: /privacy.html)", paths: ["/privacy.html", "/privacy"], required: true },
+  { label: "COOKIE POLICY (page: /cookies.html)", paths: ["/cookies.html", "/cookies"], required: true },
+  // Optional: if this page is removed one day, Pixel simply stops using it.
+  { label: "FREE WEBSITE COMPETITION TERMS (page: /free-website-terms.html)", paths: ["/free-website-terms.html", "/free-website-terms"], max: 9000 },
 ];
 const PAGE_CACHE_MS = 5 * 60 * 1000;
 const PAGE_MAX_CHARS = 7000;
@@ -112,7 +114,7 @@ function htmlToText(html) {
   return h.replace(/[ \t\u00a0]+/g, " ").replace(/ ?\n ?/g, "\n").replace(/\n{2,}/g, "\n").trim();
 }
 
-async function readPage(env, origin, paths) {
+async function readPage(env, origin, paths, max) {
   for (const p of paths) {
     try {
       let res = await env.ASSETS.fetch(new Request(origin + p, { redirect: "follow" }));
@@ -121,7 +123,7 @@ async function readPage(env, origin, paths) {
       }
       if (res.ok && /html/i.test(res.headers.get("content-type") || "")) {
         const t = htmlToText(await res.text());
-        if (t.length > 200) return t.slice(0, PAGE_MAX_CHARS);
+        if (t.length > 200) return t.slice(0, max || PAGE_MAX_CHARS);
       }
     } catch (e) { /* try the next path */ }
   }
@@ -134,9 +136,9 @@ async function getKnowledge(env, origin) {
   if (pageCache.text && now - pageCache.at < PAGE_CACHE_MS) return pageCache.text;
   let text = "";
   try {
-    const parts = await Promise.all(PAGES.map((pg) => readPage(env, origin, pg.paths)));
-    const ok = parts.every((t) => t);
-    if (ok) text = "KEY FACTS" + CORE_FACTS + "\n\n" + PAGES.map((pg, i) => "=== " + pg.label + " ===\n" + parts[i]).join("\n\n");
+    const parts = await Promise.all(PAGES.map((pg) => readPage(env, origin, pg.paths, pg.max)));
+    const ok = PAGES.every((pg, i) => !pg.required || parts[i]);
+    if (ok) text = "KEY FACTS" + CORE_FACTS + "\n\n" + PAGES.map((pg, i) => (parts[i] ? "=== " + pg.label + " ===\n" + parts[i] : "")).filter(Boolean).join("\n\n");
   } catch (e) { /* fall back below */ }
   if (!text) {
     console.error("Live pages unavailable, using backup notes");
@@ -156,7 +158,7 @@ function extractReply(out) {
 }
 
 const ALLOWED_LINKS = new Set([
-  "/privacy.html", "/cookies.html", "/#contact", "/#services", "/#quotes", "/#why",
+  "/privacy.html", "/cookies.html", "/free-website-terms.html", "/#contact", "/#services", "/#quotes", "/#why",
   "mailto:jedarlington@live.co.uk",
 ]);
 const LINK_RE = /\[([^\]\n]{1,60})\]\(([^)\s]{1,200})\)/g;
