@@ -107,7 +107,9 @@ async function handleChat(request, env) {
     if (!reply) return json({ error: "empty" }, 502);
     return json({ reply });
   } catch (e) {
-    return json({ error: "unavailable" }, 503);
+    console.error("AI error:", e && e.message);
+    // TEMPORARY while testing: shows the cause. Remove "detail" before launch.
+    return json({ error: "unavailable", detail: String((e && e.message) || e).slice(0, 300) }, 503);
   }
 }
 
