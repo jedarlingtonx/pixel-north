@@ -10,6 +10,14 @@
   var CSS =
     "#pn-chat-btn{position:fixed;right:16px;bottom:16px;z-index:2147482000;display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;background:#FF3D8B;color:#1A1033;font:700 16px/1 'DM Sans',system-ui,sans-serif;padding:12px 22px 12px 14px;border-radius:999px;box-shadow:0 0 0 3px #fff,0 6px 20px rgba(26,16,51,.4)}" +
     "#pn-chat-btn:hover{background:#FF5A9F}#pn-chat-btn:focus-visible,#pn-chat input:focus-visible,#pn-chat button:focus-visible{outline:3px solid #FF3D8B;outline-offset:2px}" +
+    "#pn-chat-btn .pnsp{position:relative;display:inline-block;width:26px;height:24px;flex:none;margin-left:2px}" +
+    "#pn-chat-btn .pnsp svg{position:absolute;fill:#fff;display:block}" +
+    "#pn-chat-btn .pnsp .pnstar1{left:0;top:3px;width:18px;height:18px;filter:drop-shadow(0 0 3px rgba(255,255,255,.7))}" +
+    "#pn-chat-btn .pnsp .pnstar2{right:0;top:0;width:10px;height:10px}" +
+    "@media (prefers-reduced-motion:no-preference){" +
+    "#pn-chat-btn .pnsp .pnstar1{animation:pnTwinkle 2.6s ease-in-out infinite}" +
+    "#pn-chat-btn .pnsp .pnstar2{animation:pnTwinkle 2.6s ease-in-out infinite 1.3s}" +
+    "@keyframes pnTwinkle{0%,100%{transform:scale(.55) rotate(0);opacity:.45}50%{transform:scale(1.1) rotate(90deg);opacity:1}}}" +
     "#pn-chat-btn img{display:block;width:26px;height:26px;image-rendering:pixelated}" +
     "#pn-chat{position:fixed;right:16px;bottom:16px;z-index:2147482001;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100dvh - 32px));display:none;flex-direction:column;background:#fff;color:#1A1033;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(26,16,51,.35);font:400 15px/1.45 'DM Sans',system-ui,sans-serif;color-scheme:light}" +
     "#pn-chat.open{display:flex}" +
@@ -39,7 +47,7 @@
   btn.type = "button";
   btn.setAttribute("aria-haspopup", "dialog");
   btn.setAttribute("aria-expanded", "false");
-  btn.innerHTML = '<img alt="" src="' + AVATAR + '">Ask Pixel';
+  btn.innerHTML = '<img alt="" src="' + AVATAR + '">Ask Pixel<span class="pnsp" aria-hidden="true"><svg class="pnstar1" viewBox="0 0 24 24"><path d="M12 0C12.8 7 17 11.2 24 12C17 12.8 12.8 17 12 24C11.2 17 7 12.8 0 12C7 11.2 11.2 7 12 0Z"/></svg><svg class="pnstar2" viewBox="0 0 24 24"><path d="M12 0C12.8 7 17 11.2 24 12C17 12.8 12.8 17 12 24C11.2 17 7 12.8 0 12C7 11.2 11.2 7 12 0Z"/></svg></span>';
 
   var box = document.createElement("div");
   box.id = "pn-chat";
