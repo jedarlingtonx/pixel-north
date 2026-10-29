@@ -133,11 +133,32 @@
     btn.style.display = "none";
     btn.setAttribute("aria-expanded", "true");
     if (!log.children.length) add("Hi, I’m Pixel, the Pixel North website assistant. Ask me about the services, how quotes work, or how to get in touch.", "bot");
+    fit();
     input.focus();
+  }
+
+  // On phones the keyboard shrinks the visible area but not the page, which
+  // pushed the top of the chat off screen. Size the panel to what is visible.
+  function fit() {
+    var vv = window.visualViewport;
+    var phone = window.matchMedia("(max-width:480px)").matches;
+    if (vv && phone && box.classList.contains("open")) {
+      box.style.top = Math.round(vv.offsetTop + 8) + "px";
+      box.style.bottom = "auto";
+      box.style.height = Math.max(200, Math.round(vv.height - 16)) + "px";
+      log.scrollTop = log.scrollHeight;
+    } else {
+      box.style.top = box.style.bottom = box.style.height = "";
+    }
+  }
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", fit);
+    window.visualViewport.addEventListener("scroll", fit);
   }
 
   function close() {
     box.classList.remove("open");
+    fit();
     btn.style.display = "";
     btn.setAttribute("aria-expanded", "false");
     btn.focus();
