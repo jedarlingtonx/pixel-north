@@ -2,7 +2,9 @@
 // and serves everything else from the static site files (404.html included).
 // The Workers AI binding named AI is declared in wrangler.jsonc.
 
-const MODEL = "@cf/meta/llama-3.1-8b-instruct";
+// Models are tried in order. Cloudflare retires models from time to time:
+// if replies stop working, check https://developers.cloudflare.com/workers-ai/models/
+const MODELS = ["@cf/google/gemma-4-26b-a4b-it", "@cf/zai-org/glm-4.7-flash"];
 const MAX_MESSAGES = 6;      // recent turns sent to the model
 const MAX_CHARS = 500;       // per message
 const MAX_BODY = 6000;       // bytes
@@ -59,6 +61,15 @@ Rules:
 INFORMATION
 ${SITE_KNOWLEDGE}`;
 
+function extractReply(out) {
+  if (!out) return "";
+  if (typeof out === "string") return out.trim();
+  if (typeof out.response === "string") return out.response.trim();
+  const c = out.choices && out.choices[0];
+  const t = c && ((c.message && c.message.content) || c.text);
+  return typeof t === "string" ? t.trim() : "";
+}
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -97,20 +108,21 @@ async function handleChat(request, env) {
     return json({ error: "bad_request" }, 400);
   }
 
-  try {
-    const out = await env.AI.run(MODEL, {
-      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...history],
-      max_tokens: 300,
-      temperature: 0.3,
-    });
-    const reply = ((out && out.response) || "").trim();
-    if (!reply) return json({ error: "empty" }, 502);
-    return json({ reply });
-  } catch (e) {
-    console.error("AI error:", e && e.message);
-    // TEMPORARY while testing: shows the cause. Remove "detail" before launch.
-    return json({ error: "unavailable", detail: String((e && e.message) || e).slice(0, 300) }, 503);
+  const messages = [{ role: "system", content: SYSTEM_PROMPT }, ...history];
+  let lastError = "";
+  for (const model of MODELS) {
+    try {
+      const out = await env.AI.run(model, { messages, max_tokens: 300, temperature: 0.3 });
+      const reply = extractReply(out);
+      if (reply) return json({ reply });
+      lastError = model + ": empty reply";
+    } catch (e) {
+      lastError = model + ": " + String((e && e.message) || e);
+      console.error("AI error:", lastError);
+    }
   }
+  // TEMPORARY while testing: shows the cause. Remove "detail" before launch.
+  return json({ error: "unavailable", detail: lastError.slice(0, 300) }, 503);
 }
 
 export default {
