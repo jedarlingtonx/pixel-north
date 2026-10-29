@@ -4,7 +4,7 @@
 
 // Models are tried in order. Cloudflare retires models from time to time:
 // if replies stop working, check https://developers.cloudflare.com/workers-ai/models/
-const MODELS = ["@cf/google/gemma-4-26b-a4b-it", "@cf/zai-org/glm-4.7-flash"];
+const MODELS = ["@cf/zai-org/glm-4.7-flash", "@cf/meta/llama-3.1-8b-instruct-fp8"];
 const MAX_MESSAGES = 6;      // recent turns sent to the model
 const MAX_CHARS = 500;       // per message
 const MAX_BODY = 6000;       // bytes
@@ -234,7 +234,7 @@ async function handleChat(request, env) {
     try {
       const out = await env.AI.run(a.model, { messages, ...a.opts });
       const reply = extractReply(out);
-      if (reply) return json({ reply: addTopicLinks(lastUser, cleanLinks(reply)) });
+      if (reply) return json({ reply: addTopicLinks(lastUser, cleanLinks(reply)), model: String((out && out.model) || a.model) });
       errors.push(a.model.split("/").pop() + " empty: " + JSON.stringify(out).slice(0, 160));
     } catch (e) {
       errors.push(a.model.split("/").pop() + " error: " + String((e && e.message) || e).slice(0, 160));
