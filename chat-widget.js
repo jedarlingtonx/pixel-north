@@ -62,6 +62,25 @@
   document.body.appendChild(btn);
   document.body.appendChild(box);
 
+  // Fade the button out near the bottom of a scrolling page so it never covers
+  // footer content (e.g. the Facebook icon). It returns when you scroll back up.
+  var ticking = false;
+  var place = function () {
+    ticking = false;
+    var de = document.documentElement;
+    var scrollable = de.scrollHeight > window.innerHeight + 300;
+    var atEnd = window.pageYOffset + window.innerHeight >= de.scrollHeight - 140;
+    var away = scrollable && atEnd;
+    btn.style.opacity = away ? "0" : "1";
+    btn.style.visibility = away ? "hidden" : "visible";
+    btn.style.pointerEvents = away ? "none" : "auto";
+  };
+  btn.style.transition = "opacity .25s ease, visibility .25s";
+  var queue = function () { if (!ticking) { ticking = true; window.requestAnimationFrame(place); } };
+  window.addEventListener("scroll", queue, { passive: true });
+  window.addEventListener("resize", queue);
+  place();
+
   var log = box.querySelector(".log");
   var form = box.querySelector("form");
   var input = box.querySelector("input");
