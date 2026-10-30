@@ -31,6 +31,10 @@
     "#pn-chat .m.me{background:#5B21E6;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}" +
     "#pn-chat .m a{color:inherit;text-decoration:underline}" +
     "#pn-chat .m.wait{color:#6B5B95}" +
+    "#pn-chat .pndots i{display:inline-block;width:6px;height:6px;margin-left:4px;border-radius:50%;background:#8B5CF6;vertical-align:middle;opacity:.45}" +
+    "@media (prefers-reduced-motion:no-preference){#pn-chat .pndots i{animation:pnBounce 1.2s ease-in-out infinite}" +
+    "#pn-chat .pndots i:nth-child(2){animation-delay:.18s}#pn-chat .pndots i:nth-child(3){animation-delay:.36s}" +
+    "@keyframes pnBounce{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-6px);opacity:1}}}" +
     "#pn-chat .note{font-size:12.5px;color:#4A3F6B;background:#fff;border-top:1px solid #E3D9FA;padding:8px 14px}" +
     "#pn-chat form{display:flex;flex-direction:row;align-items:stretch;gap:8px;margin:0;padding:10px 12px;background:#fff;border-radius:0;border-top:1px solid #E3D9FA}" +
     "#pn-chat form input{flex:1 1 auto;width:auto;min-width:0;margin:0;font:inherit;font-size:16px;padding:10px 14px;border:2px solid #CFC0F5;border-radius:999px;background:#fff;color:#1A1033}" +
@@ -198,7 +202,12 @@
     input.value = "";
     add(q, "me");
     history.push({ role: "user", content: q });
-    var wait = add("Thinking…", "bot wait");
+    var wait = add("Thinking", "bot wait");
+    var dots = document.createElement("span");
+    dots.className = "pndots";
+    dots.setAttribute("aria-hidden", "true");
+    dots.innerHTML = "<i></i><i></i><i></i>";
+    wait.appendChild(dots);
 
     fetch("/api/chat", {
       method: "POST",
