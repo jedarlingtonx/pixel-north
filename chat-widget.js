@@ -25,7 +25,7 @@
     "#pn-chat header .who{display:flex;align-items:center;gap:12px}#pn-chat header .who img{width:44px;height:44px;image-rendering:pixelated;flex:none;border:2px solid #fff;box-sizing:border-box}" +
     "#pn-chat header b{font:700 18px 'Outfit',system-ui,sans-serif;letter-spacing:-.3px}#pn-chat header span{display:block;font-size:12.5px;opacity:.85}" +
     "#pn-chat header button{background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:2px 8px;border-radius:8px}" +
-    "#pn-chat .log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#F1EBFF}" +
+    "#pn-chat .log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:10px;background:#F1EBFF}" +
     "#pn-chat .m{max-width:86%;padding:10px 14px;border-radius:16px;white-space:pre-wrap;overflow-wrap:anywhere}" +
     "#pn-chat .m.bot{background:#fff;align-self:flex-start;border-bottom-left-radius:4px}" +
     "#pn-chat .m.me{background:#5B21E6;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}" +
@@ -133,15 +133,35 @@
     btn.style.display = "none";
     btn.setAttribute("aria-expanded", "true");
     if (!log.children.length) add("Hi, I’m Pixel, the Pixel North website assistant. Ask me about the services, how quotes work, or how to get in touch.", "bot");
+    lock(true);
     fit();
-    input.focus();
+    if (!isPhone()) input.focus();
   }
 
   // On phones the keyboard shrinks the visible area but not the page, which
   // pushed the top of the chat off screen. Size the panel to what is visible.
+  function isPhone() { return window.matchMedia("(max-width:480px)").matches; }
+
+  // Freeze the page behind the panel so iOS doesn't scroll it when the keyboard opens.
+  var lockedY = null;
+  function lock(on) {
+    if (!isPhone()) on = false;
+    var b = document.body;
+    if (on && lockedY === null) {
+      lockedY = window.pageYOffset;
+      b.style.position = "fixed"; b.style.top = -lockedY + "px"; b.style.left = "0"; b.style.right = "0"; b.style.width = "100%";
+    } else if (!on && lockedY !== null) {
+      b.style.position = b.style.top = b.style.left = b.style.right = b.style.width = "";
+      window.scrollTo(0, lockedY); lockedY = null;
+    }
+  }
+
+  var fitQueued = false;
+  function queueFit() { if (!fitQueued) { fitQueued = true; window.requestAnimationFrame(function () { fitQueued = false; fit(); }); } }
+
   function fit() {
     var vv = window.visualViewport;
-    var phone = window.matchMedia("(max-width:480px)").matches;
+    var phone = isPhone();
     if (vv && phone && box.classList.contains("open")) {
       box.style.top = Math.round(vv.offsetTop + 8) + "px";
       box.style.bottom = "auto";
@@ -152,12 +172,13 @@
     }
   }
   if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", fit);
-    window.visualViewport.addEventListener("scroll", fit);
+    window.visualViewport.addEventListener("resize", queueFit);
+    window.visualViewport.addEventListener("scroll", queueFit);
   }
 
   function close() {
     box.classList.remove("open");
+    lock(false);
     fit();
     btn.style.display = "";
     btn.setAttribute("aria-expanded", "false");
