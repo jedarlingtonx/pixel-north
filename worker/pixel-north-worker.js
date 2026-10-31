@@ -9,7 +9,7 @@ const MAX_MESSAGES = 6;      // recent turns sent to the model
 const MAX_CHARS = 500;       // per message
 const MAX_BODY = 6000;       // bytes
 
-const ALLOWED_HOSTS = [/^pixel-north\.co\.uk$/, /^www\.pixel-north\.co\.uk$/, /^([a-z0-9-]+\.)?pixel-north[a-z0-9-]*\.([a-z0-9-]+\.)?(pages|workers)\.dev$/];
+const ALLOWED_HOSTS = [/^pixel-north\.co\.uk$/, /^www\.pixel-north\.co\.uk$/, /^[a-z0-9-]+\.(www\.)?pixel-north\.co\.uk$/, /^([a-z0-9-]+\.)?[a-z0-9-]*pixel-north[a-z0-9-]*\.([a-z0-9-]+\.)?(pages|workers)\.dev$/];
 
 // Hand-written notes. Only used as a backup if the live pages cannot be read.
 const FALLBACK_KNOWLEDGE = `
