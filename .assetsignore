@@ -1,5 +1,9 @@
+.assetsignore
+.git
+.gitignore
+.wrangler
+node_modules
 wrangler.jsonc
 worker
 functions
 README.md
-node_modules
